@@ -8,6 +8,10 @@ import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import store from './store'
 
+
+var deviceWidth = document.documentElement.clientWidth;
+document.documentElement.style.fontSize = deviceWidth / 19.2 + 'px';
+
 class App extends React.Component {
     constructor(props) {
         super(props)

@@ -1,8 +1,15 @@
 import React from 'react'
+import styled from 'styled-components';
 // import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { fetchPosts } from 'api/about'
+import { fetchPosts, fetchPosts2} from 'api/about'
 import { we_chat_login } from 'action/index'
+
+
+const Title = styled.h1`
+        font-size: 1.5em;
+        color: ${props => props.primary ? 'palevioletred' : 'purple'};
+        `;
 
 class Income extends React.Component {
     constructor(props) {
@@ -10,13 +17,12 @@ class Income extends React.Component {
         this.state = {}
     }
     componentDidMount() {
-        let { increaseAction, fetchpost} = this.props
+        let { increaseAction, fetchpost, fetchpost2} = this.props
         increaseAction()
         fetchpost('reactjs')
+        fetchpost2('reactjs')
     }
-
     render() {
-        
         return (
             <div className="profile_invite_income">
                 <p className="title">
@@ -39,6 +45,7 @@ class Income extends React.Component {
                     </p>
                     <p className="profile_income_desc">可提现金额</p>
                 </div>
+                <Title primary>Hello World</Title>
                 <div style={{ clear: 'both' }} />
             </div>
         )
@@ -47,17 +54,21 @@ class Income extends React.Component {
 
 function mapStateToProps(state) {
     const value = state.about
-    console.log('dfjfdf')
+    console.log('value')
     console.log(value)
     const value2 = state.about2
-    console.log('dfjfdf2')
+    console.log('value2')
     console.log(value2)
+    const value3 = state.about3
+    console.log('value3')
+    console.log(value3)
     return {}
 }
 function mapDispatchToProps(dispatch) {
     return {
         increaseAction: () => dispatch(we_chat_login()),
-        fetchpost: (subreddit) => dispatch(fetchPosts(subreddit))
+        fetchpost: (subreddit) => dispatch(fetchPosts(subreddit)),
+        fetchpost2: (subreddit) => dispatch(fetchPosts2(subreddit))
         // increaseAction: bindActionCreators(increaseAction, dispatch)
     }
 }
