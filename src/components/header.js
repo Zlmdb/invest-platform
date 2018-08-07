@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 // import { bindActionCreators } from 'redux'
 // import { connect } from 'react-redux'
 import styled from 'styled-components';
@@ -11,17 +12,24 @@ const HeaderContain = styled.div`
         display:flex;
         align-items:center;
         `;
+const Image = styled.img`
+        width:0.48rem;
+        height:0.47rem;
+        margin-right:0.27rem;
+        vertical-align:middle;
+        `;
 const HeaderLeft = styled.div`
-        font-size: 24px;
+        font-size: 0.24rem;
         color: #2A2927;
         flex:1
         `;
 const HeaderRight = styled.div`
         font-size: 14px;
-        color: #C6AB92;
+        color: #3D3A35;
         flex:1;
         display:flex;
         align-items:center;
+        height:70px;
         `;
 const HeaderRightTag = styled.div`
         padding:3px 15px;
@@ -67,12 +75,21 @@ class Header extends React.Component {
     };
 
     render() {
-        // const { sharedNum, expectedIncome, canUse } = this.props
+        const logo = require('../assets/images/logo.png')
         return (
             <HeaderContain>
-                <HeaderLeft>CHAiR</HeaderLeft>
+                <HeaderLeft><Image src={logo}></Image>溪谷</HeaderLeft>
                 <HeaderRight>
-                    <HeaderRightTag>网站首页</HeaderRightTag>
+                    
+                    <NavLink to='/' activeStyle={{
+                        padding: '3px 15px',
+                        margin: '0 20px',
+                        color:'#C6AB92',
+                        height: '70px',
+                        lineHeight: '70px',
+                        borderBottom:'3px solid #C6AB92',
+                        textDecoration:'none'
+                    }}>网站首页</NavLink>
                     <HeaderRightTag>产品列表</HeaderRightTag>
                     <HeaderRightLogin>登陆</HeaderRightLogin>
                     <HeaderRightRegister>注册</HeaderRightRegister>

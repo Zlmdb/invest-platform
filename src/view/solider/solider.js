@@ -7,21 +7,25 @@ import Slider from './Slider/Slider';
 
 const IMAGE_DATA = [
   {
-    src: require('./images/demo1.png'),
+    src: require('./images/demo1.jpg'),
     alt: 'images-1',
   },
-  {
-    src: require('./images/demo2.jpg'),
-    alt: 'images-2',
-  },
-  {
-    src: require('./images/demo3.jpg'),
-    alt: 'images-3',
-  },
-  {
-    src: require('./images/demo4.jpg'),
-    alt: 'images-4',
-  }
+  // {
+  //   src: require('./images/demo2.jpg'),
+  //   alt: 'images-2',
+  // },
+  // {
+  //   src: require('./images/demo3.jpg'),
+  //   alt: 'images-3',
+  // },
+  // {
+  //   src: require('./images/demo4.jpg'),
+  //   alt: 'images-4',
+  // },
+  // {
+  //   src: require('./images/demo5.png'),
+  //   alt: 'images-5',
+  // }
 ];
 
 // var deviceWidth = document.documentElement.clientWidth;

@@ -1,3 +1,6 @@
+*{
+  box-sizing:border-box;
+}
 .App {
   text-align: center;
 }
@@ -30,12 +33,13 @@
   font-size:0.56rem;
   color:#C6AB92;
   padding:0 20px;
+  line-height:42px;
 }
 .advance{
   flex:1
 }
 .TransactionProcess{
-  background-color:rgb(240,242,245);
+  background-color:fff;
   text-align:center;
   padding:1.3rem 1.3rem;
 }
@@ -51,7 +55,7 @@
 
 }
 .CooperativePartner{
-  background-color:#fff;
+  background-color:#FAFAFA;
   text-align:center;
   padding:1.3rem 1.3rem;
 }
@@ -67,6 +71,7 @@
 .footer{
   background:#000;
   height:3.77rem;
+  text-align:left;
 }
 .footerItem{
   display:flex;
@@ -74,6 +79,7 @@
   height:3.03rem;
   align-items:center;
   margin:0 auto;
+  
 }
 .footerImg{
   border-radius:50%;
@@ -83,16 +89,34 @@
   align-self:center;
   flex-grow:0;
   flex-shrink:0;
+  margin-right:20px;
 }
 .minwen{
   color:#959595;
   font-size:0.14rem;
+  border-top:1px solid rgba(80,80,80,1);
+  padding-left:10%;
+  padding-top:10px;
 }
-.recommendSplit{
+.recommendSplitUp{
   flex:1;
-  flex-grow:1;
+  //flex-grow:1;
+  text-align:center;
+}
+.recommendSplitDown{
+  flex:2;
+  //flex-grow:1;
   text-align:center;
 }
 .percent{
   font-size:0.3rem;
+}
+.arrow{
+  position:relative;
+}
+.arrow img{
+  position:absolute;
+  top:43%;
+  left:50%;
+  transform:translate(-50%,-50%)
 }

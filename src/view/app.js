@@ -14,7 +14,7 @@ const Swiper = styled.div`
         `;
         //推荐产品
 const RecommendedProducts= styled.div`
-       background-color:rgb(240,242,245);
+       background-color:#fff;
        padding:20px 20px;
         `;
 const RecommendedProductsTitle= styled.div`
@@ -102,16 +102,17 @@ const AdvantageTitleEn = styled.div`
         margin-top:20px;
         `;
 const AdvantageDetail = styled.div`
-        background-color:#fff;
+        background-color:#FAFAFA;
         `;
 const AdvantageDetailCon = styled.div`
-        background-color:#fff;
+        // background-color:#fff;
         width:80%;
         margin:0 auto;
         height:4.94rem;
         display:flex;
         align-items:center;
         justify-content:space-between;
+        text-align:left;
         `;
 const AdvantageDetailItem = styled.div`
         // width:100px;
@@ -161,36 +162,69 @@ const TransactionProcessLet= styled.div`
         color:#393835;
         `;
         // 合作伙伴
-const CooperativePartnerImg = styled.div`
-        background-image:url(${require('../assets/images/fang88.png')});
+const CooperativePartnerImg1 = styled.div`
+        background-image:url(${require('../assets/images/1.png')});
         background-size:100% 100%;
         width:2.75rem;
         height:1.32rem;
         margin-bottom:20px;
         border:1px solid #999;
         `;
+const CooperativePartnerImg2 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/2.png')});
+        `;
+const CooperativePartnerImg3 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/3.png')});
+        `;
+const CooperativePartnerImg4 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/4.png')});
+        `;
+const CooperativePartnerImg5 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/5.png')});
+        `;
+const CooperativePartnerImg6 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/6.png')});
+        `;
+const CooperativePartnerImg7 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/7.png')});
+        `;
+const CooperativePartnerImg8 = CooperativePartnerImg1.extend`
+        background-image:url(${require('../assets/images/8.png')});
+        `;
 const FooterLeft = styled.div`
-height:1rem;
+        height:1rem;
         flex:1;
         font-size:0.14rem;
         color:#BDBDBD;
         display:flex;
         align-items:center;
-        border-right:1px solid #999;
+        border-right:1px solid rgba(80,80,80,1);
+        padding:0 20px;
         `;
 const FooterCenter = styled.div`
-height:1rem;
+        height:1rem;
         flex:1;
         font-size:0.17rem;
         color:#fff;
-        border-right:1px solid #999;
+        border-right:1px solid rgba(80,80,80,1);
+        box-sizing:border-box;
+        // padding-left:20px;
+        display:flex;
         `;
 const FooterRight = styled.div`
-height:1rem;
+        height:1rem;
         flex:1;
         font-size:0.17rem;
         color:#BDBDBD;
-        
+        box-sizing:border-box;
+        padding-left:20px;
+        display:flex;
+        `;
+const CenterLine = styled.div`
+        width:150px;
+        border:1px solid #C6AB92;
+        margin:0 auto;
+        margin-top:30px;
         `;
 class Index extends React.Component {
     constructor(props) {
@@ -206,24 +240,41 @@ class Index extends React.Component {
                 {/*<Swiper>待确定文案</Swiper>*/}
                 <Solider/>
                 <RecommendedProducts>
-                    <RecommendedProductsTitle>推荐产品</RecommendedProductsTitle>
+                    <RecommendedProductsTitle><img alt="" style={{width:'2rem'}} src={require('../assets/images/recommendProduct.png')}/></RecommendedProductsTitle>
                     <RecommendedProductsLetter>Design is everywhere. From the dress you’re wearing to the smartphone you’re holding, it’s design.</RecommendedProductsLetter>
+                    <CenterLine></CenterLine>
                     <RecommendedCon>
                         <RecommendedItem>
-                            <div className="recommendSplit"></div>
-                            <div className="recommendSplit">
+                            <div className="recommendSplitUp"></div>
+                            <div className="recommendSplitDown">
                                 <RecommendSplitDownTitle>财富好望角租赁收益型美元基金</RecommendSplitDownTitle>
                                 <RecommendSplitDownTurn>12.29<code className="percent">%</code></RecommendSplitDownTurn>
                                 <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
                                 <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
                             </div>
                         </RecommendedItem>
-                        <RecommendedItemCenter></RecommendedItemCenter>
-                        <RecommendedItem></RecommendedItem>
+                        <RecommendedItemCenter>
+                            <div className="recommendSplitUp"></div>
+                            <div className="recommendSplitDown">
+                                <RecommendSplitDownTitle>财富好望角租赁收益型美元基金</RecommendSplitDownTitle>
+                                <RecommendSplitDownTurn>12.29<code className="percent">%</code></RecommendSplitDownTurn>
+                                <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
+                                <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
+                            </div>
+                        </RecommendedItemCenter>
+                        <RecommendedItem>
+                            <div className="recommendSplitUp"></div>
+                            <div className="recommendSplitDown">
+                                <RecommendSplitDownTitle>财富好望角租赁收益型美元基金</RecommendSplitDownTitle>
+                                <RecommendSplitDownTurn>12.29<code className="percent">%</code></RecommendSplitDownTurn>
+                                <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
+                                <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
+                            </div>
+                        </RecommendedItem>
                     </RecommendedCon>
                 </RecommendedProducts>
                 <Advantage>
-                    <AdvantageTitle>我们的优势</AdvantageTitle>
+                    <AdvantageTitle><img alt="" style={{ width: '2.83rem' }} src={require('../assets/images/ourAdvantance.png')} /></AdvantageTitle>
                     <AdvantageTitleEn>- Advantages -</AdvantageTitleEn>
                 </Advantage>
                 <AdvantageDetail>
@@ -260,20 +311,29 @@ class Index extends React.Component {
                 </AdvantageDetail>
                 {/*交易流程*/}
                 <div className="TransactionProcess">
-                    <TransactionProcessL>交易流程</TransactionProcessL>
+                    <TransactionProcessL><img alt="" style={{ width: '1.98rem' }} src={require('../assets/images/transactionProcess.png')} /></TransactionProcessL>
                     <TransactionProcessLEn>- Tranaction Process -</TransactionProcessLEn>
                     <div className="TransactionProcessStep">
                         <div className="TransactionProcessI">
                             <TransactionProcessImgxc></TransactionProcessImgxc>
                             <TransactionProcessLet>选择产品</TransactionProcessLet>
                         </div>
+                        <div className="TransactionProcessI arrow">
+                            <img alt="" src={require('../assets/images/arrow.png')}/>
+                        </div>
                         <div className="TransactionProcessI">
                             <TransactionProcessImgxy></TransactionProcessImgxy>
                             <TransactionProcessLet>线上预约</TransactionProcessLet>
                         </div>
+                        <div className="TransactionProcessI arrow">
+                            <img alt="" src={require('../assets/images/arrow.png')} />
+                        </div>
                         <div className="TransactionProcessI">
                             <TransactionProcessImgqr></TransactionProcessImgqr>
                             <TransactionProcessLet>签约认购</TransactionProcessLet>
+                        </div>
+                        <div className="TransactionProcessI arrow">
+                            <img alt="" src={require('../assets/images/arrow.png')} />
                         </div>
                         <div className="TransactionProcessI">
                             <TransactionProcessImgxt></TransactionProcessImgxt>
@@ -283,17 +343,17 @@ class Index extends React.Component {
                 </div>
                 {/*合作伙伴*/}
                 <div className="CooperativePartner">
-                    <TransactionProcessL>合作伙伴</TransactionProcessL>
+                    <TransactionProcessL><img alt="" style={{ width: '1.95rem' }} src={require('../assets/images/cooperativePartner.png')} /></TransactionProcessL>
                     <TransactionProcessLEn>- Partners -</TransactionProcessLEn>
                     <div className="CooperativePartnerStep">
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
-                        <CooperativePartnerImg></CooperativePartnerImg>
+                        <CooperativePartnerImg1></CooperativePartnerImg1>
+                        <CooperativePartnerImg2></CooperativePartnerImg2>
+                        <CooperativePartnerImg3></CooperativePartnerImg3>
+                        <CooperativePartnerImg4></CooperativePartnerImg4>
+                        <CooperativePartnerImg5></CooperativePartnerImg5>
+                        <CooperativePartnerImg6></CooperativePartnerImg6>
+                        <CooperativePartnerImg7></CooperativePartnerImg7>
+                        <CooperativePartnerImg8></CooperativePartnerImg8>
                     </div>
                 </div>
                 {/*底部*/}
@@ -304,12 +364,20 @@ class Index extends React.Component {
                             <div className="footerLeft">是新型的互联网金融网站，由杭州地普好森有限公司全权运营，旨在向消费者提供可靠的金融产品服务，产品涵盖保险、基金、房产等。</div>
                         </FooterLeft>
                         <FooterCenter>
-                            <div>-- 产品列表</div>
-                            <div>-- 用户服务协议</div>
+                            <div style={{flex:2}}></div>
+                            <div style={{ flex: 1 ,whiteSpace:'nowrap',display:'flex',flexDirection:'column',justifyContent:'center'}}>
+                                <div style={{ marginBottom: '10px' }}>-- 产品列表</div>
+                                <div>-- 用户服务协议</div>
+                            </div>
+                            <div style={{ flex: 2 }}></div>
                         </FooterCenter>
                         <FooterRight>
-                            <div>-- 投资热线</div>
-                            <div>-- 400 900 6185</div>
+                            <div style={{ flex: 2 }}></div>
+                            <div style={{ flex: 1, whiteSpace: 'nowrap', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+                                <div style={{marginBottom:'10px'}}>-- 投资热线</div>
+                                <div>-- 400 900 6185</div>
+                            </div>
+                            <div style={{ flex: 2 }}></div>
                         </FooterRight>
                     </div>
                     <div className="minwen">© Copyright 2018 | Cesis Theme by Tranmautritam | All Rights Reserved</div>
