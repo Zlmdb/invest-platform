@@ -15,7 +15,7 @@ const Swiper = styled.div`
         //推荐产品
 const RecommendedProducts= styled.div`
        background-color:#fff;
-       padding:20px 20px;
+       padding:1.1rem 20px 20px 20px;
         `;
 const RecommendedProductsTitle= styled.div`
         color:#454950;
@@ -43,16 +43,16 @@ const RecommendedItem= styled.div`
         justify-content:space-between;
         width:3.78rem;
         height:5.64rem;
-        border:1px solid #000;
+        // border:1px solid #000;
         background-image:url(${require('../assets/images/recommendBk.png')});
         background-size:100% 100%;
         border-radius:6px;
-        border:1px solid #E2E2E2;
+        // border:1px solid #E2E2E2;
         display:flex;
         flex-direction:column;
         justify-content:space-between;
         &:hover{
-            box-shadow:0 0 20px #E2E2E2;
+            box-shadow:0 0 20px #E4D4C6;
         }
         `;
 const RecommendedItemCenter = RecommendedItem.extend`
@@ -168,7 +168,7 @@ const CooperativePartnerImg1 = styled.div`
         width:2.75rem;
         height:1.32rem;
         margin-bottom:20px;
-        border:1px solid #999;
+        // border:0.5px solid #999;
         `;
 const CooperativePartnerImg2 = CooperativePartnerImg1.extend`
         background-image:url(${require('../assets/images/2.png')});
@@ -312,7 +312,7 @@ class Index extends React.Component {
                 {/*交易流程*/}
                 <div className="TransactionProcess">
                     <TransactionProcessL><img alt="" style={{ width: '1.98rem' }} src={require('../assets/images/transactionProcess.png')} /></TransactionProcessL>
-                    <TransactionProcessLEn>- Tranaction Process -</TransactionProcessLEn>
+                    <TransactionProcessLEn>- Transaction Process -</TransactionProcessLEn>
                     <div className="TransactionProcessStep">
                         <div className="TransactionProcessI">
                             <TransactionProcessImgxc></TransactionProcessImgxc>
@@ -361,7 +361,7 @@ class Index extends React.Component {
                     <div className="footerItem">
                         <FooterLeft>
                             <div className="footerImg"></div>
-                            <div className="footerLeft">是新型的互联网金融网站，由杭州地普好森有限公司全权运营，旨在向消费者提供可靠的金融产品服务，产品涵盖保险、基金、房产等。</div>
+                            <div className="footerLeft">溪谷是新型的互联网金融网站，由杭州地普好森有限公司全权运营，旨在向消费者提供可靠的金融产品服务，产品涵盖保险、基金、房产等。</div>
                         </FooterLeft>
                         <FooterCenter>
                             <div style={{flex:2}}></div>
