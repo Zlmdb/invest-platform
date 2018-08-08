@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { connect } from 'react-redux'
 import { fetchPosts, fetchPosts2} from 'api/about'
 import { we_chat_login } from 'action/index'
+import { Button } from 'antd';
 
 
 const Title = styled.h1`
@@ -45,6 +46,7 @@ class Income extends React.Component {
                     </p>
                     <p className="profile_income_desc">可提现金额</p>
                 </div>
+                <Button type="primary">Button</Button>
                 <Title primary>Hello World</Title>
                 <div style={{ clear: 'both' }} />
             </div>
