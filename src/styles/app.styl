@@ -1,3 +1,6 @@
+*{
+  box-sizing:border-box;
+}
 .App {
   text-align: center;
 }
@@ -25,4 +28,114 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+.advanceNum{
+  font-size:0.56rem;
+  color:#C6AB92;
+  padding:0 20px;
+  line-height:42px;
+  margin-bottom:0.33rem;
+}
+.advanceNum img{
+  width:0.93rem;
+}
+.advance{
+  flex:1
+}
+.TransactionProcess{
+  background-color:fff;
+  text-align:center;
+  padding:1.3rem 1.3rem;
+}
+.TransactionProcessStep{
+  width:70%;
+  margin:0 auto;
+  display:flex;
+  margin-top:1.4rem;
+  justify-content:space-between;
+  flex-direction:row;
+}
+.TransactionProcessI{
+
+}
+.CooperativePartner{
+  background-color:#FAFAFA;
+  text-align:center;
+  padding:1.3rem 1.3rem;
+}
+.CooperativePartnerStep{
+  width:70%;
+  margin:0 auto;
+  display:flex;
+  margin-top:1.4rem;
+  justify-content:space-between;
+  flex-direction:row;
+  flex-wrap:wrap;
+}
+.footer{
+  background:#000;
+  height:3.77rem;
+  text-align:left;
+}
+.footerItem{
+  display:flex;
+  width:80%;
+  height:3.03rem;
+  align-items:center;
+  margin:0 auto;
+  
+}
+.footerImg{
+  border-radius:50%;
+  background:#999;
+  width:0.9rem;
+  height:0.9rem;
+  align-self:center;
+  flex-grow:0;
+  flex-shrink:0;
+  margin-right:20px;
+}
+.minwen{
+  color:#959595;
+  font-size:0.14rem;
+  border-top:1px solid rgba(80,80,80,1);
+  padding-left:10%;
+  padding-top:10px;
+}
+.recommendSplitUp{
+  flex:1;
+  //flex-grow:1;
+  text-align:center;
+}
+.recommendSplitDown{
+  flex:2;
+  //flex-grow:1;
+  text-align:center;
+}
+.percent{
+  font-size:0.3rem;
+}
+.arrow{
+  position:relative;
+}
+.arrow img{
+  position:absolute;
+  top:43%;
+  left:50%;
+  transform:translate(-50%,-50%)
+}
+.headerTag{
+  padding: 3px 15px;
+  margin: 0 20px;
+  color:#3D3A35;
+  &:hover{
+    color:#C6AB92;
+  }
+}
+.indexSelected{
+  color:#C6AB92;
+  height: 70px;
+  line-height: 66px;
+  border-bottom:3px solid #C6AB92;
+  text-decoration:'none';
 }

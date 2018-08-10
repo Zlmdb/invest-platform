@@ -7,11 +7,35 @@ class Qustion extends React.Component {
         super(props)
         this.state = {}
     }
-
+    componentDidMount = () => {
+        fetch(`/info/list`, {
+            methods: 'POST',
+            // credentials: 'include',//资格证书
+            headers: {
+                // 'Accept': 'application/json, text/plain, */*',
+                // 'Content-Type': 'application/x-www-form-urlencoded'
+                'Content-Type': 'application/json'
+            },
+            body: {
+                page: 1
+            }
+        })
+        .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        )
+        .then(
+            json => console.log(json)
+        )
+        .catch(err => {
+            console.error(err);
+        })
+    };
+    
     render() {
         // const { sharedNum, expectedIncome, canUse } = this.props
         return (
-            <div className="profile_invite_income">
+            <div>
                 <p className="title">
                     邀请详情ww
           <span className="line" />

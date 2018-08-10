@@ -92,6 +92,7 @@ module.exports = {
       reducer: path.resolve(__dirname, '../src/reducer'),
       action: path.resolve(__dirname, '../src/action'),
       api: path.resolve(__dirname, '../src/api'),
+      compon: path.resolve(__dirname, '../src/components')
     },
     plugins: [
       // Prevents users from importing files from outside of src/ (or node_modules/).
@@ -192,6 +193,7 @@ module.exports = {
               },
             ],
           },
+          //ding
           {
             test: /\.styl$/,
             use: [
@@ -296,5 +298,14 @@ module.exports = {
   // cumbersome.
   performance: {
     hints: false,
-  },
+  }
+  // devServer: {
+  //   proxy: {
+  //     '/info/list': {
+  //       target: 'https://api2.fang88.com',
+  //       secure: true
+  //     }
+  //   }
+
+  // } 
 };
