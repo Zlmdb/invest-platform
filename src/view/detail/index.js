@@ -20,7 +20,7 @@ class Detail extends React.Component {
     }
     componentDidMount() {
         let { fetchInit } = this.props
-        fetchInit(1)
+        fetchInit(this.id)
         //
         
     }
@@ -31,6 +31,7 @@ class Detail extends React.Component {
     // }
     render() {
         this.itemValue = JSON.parse(window.localStorage.getItem("item"))
+        this.id = JSON.parse(window.localStorage.getItem("id"))
         // console.log(this.itemValue)
         const { value}=this.props
         return (
