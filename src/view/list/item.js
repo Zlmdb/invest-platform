@@ -47,6 +47,8 @@ class Item extends React.Component {
         this.props.history.push('/detail')
         let item = e.currentTarget.getAttribute('data-item')
         window.localStorage.setItem("item", item)
+        let id = e.currentTarget.getAttribute('data-id')
+        window.localStorage.setItem("id", id)
     }
     render() {
         // 基金 FUND = 1
@@ -115,7 +117,7 @@ class Item extends React.Component {
                 break;
         }
         return (
-            <div style={{ backgroundColor: '#fff' }} data-item={JSON.stringify(item)} onClick={this.toDetail.bind(this)}>
+            <div style={{ backgroundColor: '#fff' }} data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail.bind(this)}>
                 <Div>
                     <div style={{ width: '7.63rem', paddingLeft: '0.37rem', borderRight:'1px solid #E2E2E2'}}>
                         <Title>{item.project_name}</Title>
