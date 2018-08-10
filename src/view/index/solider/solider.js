@@ -7,7 +7,7 @@ import Slider from './Slider/Slider';
 
 const IMAGE_DATA = [
   {
-    src: require('./images/demo1.jpg'),
+    src: require('./images/demo1.png'),
     alt: 'images-1',
   },
   // {

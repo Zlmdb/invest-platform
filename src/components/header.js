@@ -11,6 +11,7 @@ const HeaderContain = styled.div`
         height:70px;
         display:flex;
         align-items:center;
+        text-align:center;
         `;
 const Image = styled.img`
         width:0.48rem;
@@ -30,6 +31,7 @@ const HeaderRight = styled.div`
         display:flex;
         align-items:center;
         height:70px;
+        box-sizing:border-box;
         `;
 const HeaderRightTag = styled.div`
         padding:3px 15px;
@@ -78,19 +80,10 @@ class Header extends React.Component {
         const logo = require('../assets/images/logo.png')
         return (
             <HeaderContain>
-                <HeaderLeft><Image src={logo}></Image>溪谷</HeaderLeft>
+                <HeaderLeft><Image src={logo}></Image>溪谷全球</HeaderLeft>
                 <HeaderRight>
-                    
-                    <NavLink to='/' activeStyle={{
-                        padding: '3px 15px',
-                        margin: '0 20px',
-                        color:'#C6AB92',
-                        height: '70px',
-                        lineHeight: '70px',
-                        borderBottom:'3px solid #C6AB92',
-                        textDecoration:'none'
-                    }}>网站首页</NavLink>
-                    <HeaderRightTag>产品列表</HeaderRightTag>
+                    <NavLink exact to='/' activeClassName='indexSelected' className="headerTag">网站首页</NavLink>
+                    <NavLink to='/list' activeClassName='indexSelected' className="headerTag">产品列表</NavLink>
                     <HeaderRightLogin>登陆</HeaderRightLogin>
                     <HeaderRightRegister>注册</HeaderRightRegister>
                 </HeaderRight>
