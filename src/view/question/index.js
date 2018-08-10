@@ -35,7 +35,7 @@ class Qustion extends React.Component {
     render() {
         // const { sharedNum, expectedIncome, canUse } = this.props
         return (
-            <div className="profile_invite_income">
+            <div>
                 <p className="title">
                     邀请详情ww
           <span className="line" />

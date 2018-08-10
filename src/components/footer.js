@@ -17,7 +17,7 @@ const FooterCenter = styled.div`
         height:1rem;
         flex:1;
         font-size:0.17rem;
-        color:#fff;
+        color:#BDBDBD;
         border-right:1px solid rgba(80,80,80,1);
         box-sizing:border-box;
         // padding-left:20px;

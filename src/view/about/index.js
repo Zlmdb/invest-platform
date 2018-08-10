@@ -19,13 +19,22 @@ class Income extends React.Component {
     }
     componentDidMount() {
         let { increaseAction, fetchpost, fetchpost2} = this.props
-        increaseAction()
-        fetchpost('reactjs')
+        // increaseAction()
+        // fetchpost('reactjs')
         fetchpost2('reactjs')
     }
+    componentWillReceiveProps(nextProps, nextState) {
+        // let { value3 } = this.props
+        let { value3 } = nextProps
+        console.log(value3)
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        return nextProps.value3 !== this.props.value3
+    }
     render() {
+        
         return (
-            <div className="profile_invite_income">
+            <div>
                 <p className="title">
                     邀请详情
           <span className="line" />
@@ -55,16 +64,18 @@ class Income extends React.Component {
 }
 
 function mapStateToProps(state) {
-    const value = state.about
-    console.log('value')
-    console.log(value)
-    const value2 = state.about2
-    console.log('value2')
-    console.log(value2)
+    // const value = state.about
+    // console.log('value')
+    // console.log(value)
+    // const value2 = state.about2
+    // console.log('value2')
+    // console.log(value2)
     const value3 = state.about3
-    console.log('value3')
-    console.log(value3)
-    return {}
+    // console.log('value3')
+    // console.log(value3)
+    return {
+        value3: value3
+    }
 }
 function mapDispatchToProps(dispatch) {
     return {
