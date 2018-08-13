@@ -39,6 +39,7 @@ class Item extends React.Component {
     constructor(props) {
         super(props)
         this.state = {}
+        this.toDetail = this.toDetail.bind(this)
     }
     componentDidMount = () => {
 
@@ -117,12 +118,12 @@ class Item extends React.Component {
                 break;
         }
         return (
-            <div style={{ backgroundColor: '#fff' }} data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail.bind(this)}>
+            <div style={{ backgroundColor: '#fff' }} data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail}>
                 <Div>
                     <div style={{ width: '7.63rem', paddingLeft: '0.37rem', borderRight:'1px solid #E2E2E2'}}>
                         <Title>{item.project_name}</Title>
                         <div style={{ display: 'flex',alignItems:'center', color: '#3D3A35', fontSize: '0.24rem', marginBottom:'0.6rem'}}>
-                            <div style={{marginRight:'20px'}}>预估年华回报率 :</div>
+                            <div style={{marginRight:'20px'}}>预估年化回报率 :</div>
                             <Rate>{project.estimate_yearly_return}</Rate>
                         </div>
                         <div style={{ display: 'flex', color: '#ADA29B', fontSize: '0.2rem', marginBottom:'0.3rem'}}>
