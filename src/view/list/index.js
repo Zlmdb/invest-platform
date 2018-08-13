@@ -46,6 +46,8 @@ class List extends React.Component {
         this.setState({
             current: page,
         });
+        let { fetchInit } = this.props
+        fetchInit(page)
     }
     render() {
         let { initData } = this.props

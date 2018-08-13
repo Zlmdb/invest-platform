@@ -1,10 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { PropTypes } from 'prop-types'
 // import { bindActionCreators } from 'redux'
-// import { connect } from 'react-redux'
 import styled from 'styled-components';
 import Header from 'compon/header'
 import Footer from 'compon/footer'
+import Item from './item'
 import Solider from './solider/solider';
+import { fetchInit } from 'api/list'
 import 'styles/app.styl';
 
 
@@ -32,56 +35,13 @@ const RecommendedProductsLetter= styled.div`
         margin:0 auto;
         margin-top:20px;
         `;
-const RecommendedCon= styled.div`
+const RecommendedCon = styled.div`
         // background-color:#999;
         padding:1rem;
         width:80%;
         margin:0 auto;
         display:flex;
         // height:56.4rem;
-        `;
-const RecommendedItem= styled.div`
-        justify-content:space-between;
-        width:3.78rem;
-        height:5.64rem;
-        // border:1px solid #000;
-        background-image:url(${require('../../assets/images/recommendBk.png')});
-        background-size:100% 100%;
-        border-radius:6px;
-        // border:1px solid #E2E2E2;
-        display:flex;
-        flex-direction:column;
-        justify-content:space-between;
-        &:hover{
-            box-shadow:0 0 20px #E4D4C6;
-        }
-        `;
-const RecommendedItemCenter = RecommendedItem.extend`
-        margin:0 1rem;
-        `;
-const RecommendSplitDownTitle = styled.div`
-        font-size:0.2rem;
-        color:#454950;
-        `;
-const RecommendSplitDownTurn = styled.div`
-        font-size:0.8rem;
-        color:#C6AB92;
-        `;
-const RecommendSplitDownDate = styled.div`
-        font-size:0.15rem;
-        color:#ADA29B;
-        `;
-const RecommendSplitDownKnow = styled.div`
-        display:inline-block;
-        font-size:0.14rem;
-        background:#C6AB92;
-        color:#fff;
-        width:1.8rem;
-        height:0.59rem;
-        line-height:0.59rem;
-        text-align:center;
-        border-radius:0.3rem;
-        margin-top:0.33rem;
         `;
 
         //我们的优势
@@ -200,13 +160,31 @@ const CenterLine = styled.div`
         margin-top:30px;
         `;
 class Index extends React.Component {
+    static propTypes = {
+        initData: PropTypes.object.isRequired
+    }
     constructor(props) {
         super(props)
         this.state = {}
     }
-
+    componentDidMount() {
+        let { fetchInit } = this.props
+        fetchInit(1)
+    }
     render() {
-        // const { sharedNum, expectedIncome, canUse } = this.props
+        const { initData } = this.props
+        let arr = initData.data, arrNode = []
+        if (arr) {
+            let arrSlice = arr.slice(0, 3)
+            var total = initData.total_count
+            arrSlice.forEach(function (value, index) {
+                if (index===1){
+                    arrNode.push(<Item center='yes' item={value} key={index}></Item>)
+                }else{
+                    arrNode.push(<Item item={value} key={index}></Item>)
+                }
+            })
+        }
         return (
             <div className="App">
                 <Header></Header>
@@ -214,36 +192,10 @@ class Index extends React.Component {
                 <Solider/>
                 <RecommendedProducts>
                     <RecommendedProductsTitle><img alt="" style={{width:'2rem'}} src={require('../../assets/images/recommendProduct.png')}/></RecommendedProductsTitle>
-                    <RecommendedProductsLetter>Design is everywhere. From the dress you’re wearing to the smartphone you’re holding, it’s design.</RecommendedProductsLetter>
+                    <RecommendedProductsLetter>The platform selects fine projects with reasonable returns and controllable risks, and offers products with diverse return levels, flexible investment terms, and safe trading structures.</RecommendedProductsLetter>
                     <CenterLine></CenterLine>
                     <RecommendedCon>
-                        <RecommendedItem>
-                            <div className="recommendSplitUp"></div>
-                            <div className="recommendSplitDown">
-                                <RecommendSplitDownTitle>财富好望角租赁收益型美元基金</RecommendSplitDownTitle>
-                                <RecommendSplitDownTurn>12.29<code className="percent">%</code></RecommendSplitDownTurn>
-                                <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
-                                <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
-                            </div>
-                        </RecommendedItem>
-                        <RecommendedItemCenter>
-                            <div className="recommendSplitUp"></div>
-                            <div className="recommendSplitDown">
-                                <RecommendSplitDownTitle>财富好望角租赁收益型美元基金</RecommendSplitDownTitle>
-                                <RecommendSplitDownTurn>12.29<code className="percent">%</code></RecommendSplitDownTurn>
-                                <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
-                                <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
-                            </div>
-                        </RecommendedItemCenter>
-                        <RecommendedItem>
-                            <div className="recommendSplitUp"></div>
-                            <div className="recommendSplitDown">
-                                <RecommendSplitDownTitle>财富好望角租赁收益型美元基金</RecommendSplitDownTitle>
-                                <RecommendSplitDownTurn>12.29<code className="percent">%</code></RecommendSplitDownTurn>
-                                <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
-                                <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
-                            </div>
-                        </RecommendedItem>
+                        {arrNode}
                     </RecommendedCon>
                 </RecommendedProducts>
                 <Advantage>
@@ -344,15 +296,17 @@ class Index extends React.Component {
     }
 }
 
-// function mapStateToProps(state) {
-//     return {}
-// }
+function mapStateToProps(state) {
+    let initData = state.listInit
+    return {
+        initData: initData
+    }
+}
 
-// function mapDispatchToProps(dispatch) {
-//     return {
-//         actions: bindActionCreators({}, dispatch)
-//     }
-// }
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchInit: (data) => dispatch(fetchInit(data))
+    }
+}
 
-// export default connect(mapStateToProps, mapDispatchToProps)(Income)
-export default Index
+export default connect(mapStateToProps, mapDispatchToProps)(Index)

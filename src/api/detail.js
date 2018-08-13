@@ -1,4 +1,5 @@
 import 'whatwg-fetch'
+import { baseUrl } from './baseUrl'
 // 初始化请求
 //请求开始
 export const REQUEST_GETS = 'DETAIL_INIT_REQUEST_GETS'
@@ -27,8 +28,9 @@ export function invalidateSubreddit() {
 export function fetchInit(data) {
     return function (dispatch) {
         dispatch(requestGets())
-        return fetch('/project/detail?id=' + data, {
+        return fetch(baseUrl +'/project/detail?id=' + data, {
             methods: 'GET',
+            mode: "cors",
             headers: {
                 'Content-Type': 'application/json'
             }

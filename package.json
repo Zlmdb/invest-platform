@@ -106,7 +106,6 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "http://192.168.0.106:8000",
   "devDependencies": {
     "babel-plugin-import": "^1.8.0"
   }
