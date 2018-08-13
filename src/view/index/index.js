@@ -11,11 +11,6 @@ import { fetchInit } from 'api/list'
 import 'styles/app.styl';
 
 
-const Swiper = styled.div`
-        background-color:#000;
-        height:8.48rem;
-        opacity:0.6973;
-        `;
         //推荐产品
 const RecommendedProducts= styled.div`
        background-color:#fff;
@@ -88,9 +83,10 @@ const AdvanceTitle = styled.div`
         color:#393835;
         `;
 const AdvanceCon = styled.div`
-        font-size:0.14rem;
+        font-size:0.18rem;
         color:#8D8D8D;
         padding-top:20px;
+        text-align:left;
         `;
         // 交易流程
 const TransactionProcessL = styled.div`
@@ -176,10 +172,9 @@ class Index extends React.Component {
         let arr = initData.data, arrNode = []
         if (arr) {
             let arrSlice = arr.slice(0, 3)
-            var total = initData.total_count
             arrSlice.forEach(function (value, index) {
                 if (index===1){
-                    arrNode.push(<Item center='yes' item={value} key={index}></Item>)
+                    arrNode.push(<Item center item={value} key={index}></Item>)
                 }else{
                     arrNode.push(<Item item={value} key={index}></Item>)
                 }
@@ -206,7 +201,7 @@ class Index extends React.Component {
                     <AdvantageDetailCon>
                         <AdvantageDetailItem>
                             <div className="advanceNum">
-                                <img src={require('../../assets/images/hb.png')}></img>
+                                <img alt="" src={require('../../assets/images/hb.png')}></img>
                             </div>
                             <div className="advance">
                                 <AdvanceTitle>最优回报</AdvanceTitle>
@@ -215,7 +210,7 @@ class Index extends React.Component {
                         </AdvantageDetailItem>
                         <AdvantageDetailItem>
                             <div className="advanceNum">
-                                <img src={require('../../assets/images/za.png')}></img>
+                                <img alt="" src={require('../../assets/images/za.png')}></img>
                             </div>
                             <div className="advance">
                                 <AdvanceTitle>资金安全</AdvanceTitle>
@@ -224,7 +219,7 @@ class Index extends React.Component {
                         </AdvantageDetailItem>
                         <AdvantageDetailItem>
                             <div className="advanceNum">
-                                <img src={require('../../assets/images/hb.png')}></img>
+                                <img alt="" src={require('../../assets/images/hb.png')}></img>
                             </div>
                             <div className="advance">
                                 <AdvanceTitle>智能平台</AdvanceTitle>
@@ -233,7 +228,7 @@ class Index extends React.Component {
                         </AdvantageDetailItem>
                         <AdvantageDetailItem>
                             <div className="advanceNum">
-                                <img src={require('../../assets/images/qf.png')}></img>
+                                <img alt="" src={require('../../assets/images/qf.png')}></img>
                             </div>
                             <div className="advance">
                                 <AdvanceTitle>全球化服务</AdvanceTitle>

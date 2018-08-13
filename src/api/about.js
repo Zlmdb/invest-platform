@@ -1,7 +1,7 @@
 // import fetch from 'cross-fetch'
 import 'whatwg-fetch'
 // import Promise from 'promise-polyfill';
-import fetchJsonp from 'fetch-jsonp';
+// import fetchJsonp from 'fetch-jsonp';
 // 第一个请求
 //请求开始
 export const REQUEST_POSTS = 'REQUEST_POSTS'

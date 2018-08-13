@@ -1,5 +1,4 @@
 import React from 'react'
-import styled from 'styled-components';
 import { connect } from 'react-redux'
 import { fetchInit } from 'api/detail'
 import Header from 'compon/header'
@@ -8,10 +7,6 @@ import Item from '../list/item'
 import 'styles/detail.styl'
 
 
-const Title = styled.h1`
-        font-size: 1.5em;
-        color: ${props => props.primary ? 'palevioletred' : 'purple'};
-        `;
 
 class Detail extends React.Component {
     constructor(props) {
@@ -36,8 +31,8 @@ class Detail extends React.Component {
         const { value}=this.props
         return (
             <div>
-                <Header></Header>
-                {this.itemValue&&<Item item={this.itemValue}></Item>}
+                <Header marginBottom></Header>
+                {this.itemValue && <Item appointment item={this.itemValue}></Item>}
                 <div className="html_text_img" style={{width:'70%',margin:'0 auto',marginTop:'30px',overflow:'hidden'}}>
                     <div dangerouslySetInnerHTML={{__html:value}}>
                     </div>
@@ -51,7 +46,7 @@ class Detail extends React.Component {
 function mapStateToProps(state) {
     const value = state.detailInit
     // console.log(value)
-    const value2 = state.listInit
+    // const value2 = state.listInit
     // console.log(value2)
     // //
     // let id=window.localStorage.getItem("id")

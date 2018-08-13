@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-import fetchJsonp from 'fetch-jsonp';
+// import fetchJsonp from 'fetch-jsonp';
 import {baseUrl} from './baseUrl'
 // 初始化请求
 //请求开始

@@ -21,6 +21,10 @@ const Title = styled.div`
         color:#3D3A35;
         font-size:0.3rem;
         margin-bottom:0.3rem;
+        cursor:pointer;
+        &:hover{
+            color:#906D4D;
+        }
         `;
 const Rate = styled.div`
         color:#FF4E32;
@@ -45,11 +49,25 @@ class Item extends React.Component {
 
     }
     toDetail(e){
-        this.props.history.push('/detail')
-        let item = e.currentTarget.getAttribute('data-item')
-        window.localStorage.setItem("item", item)
-        let id = e.currentTarget.getAttribute('data-id')
-        window.localStorage.setItem("id", id)
+        if(this.props.clickEnable){
+            this.props.history.push('/detail')
+            let item = e.currentTarget.getAttribute('data-item')
+            window.localStorage.setItem("item", item)
+            let id = e.currentTarget.getAttribute('data-id')
+            window.localStorage.setItem("id", id)
+        }
+    }
+    appointment(){
+        const { appointment } = this.props
+        if (appointment) {
+            return (
+                <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <div style={{ padding: '8px 24px', background: '#C6AB92', borderRadius: '0.44rem', fontSize: '0.24rem', color: '#fff', cursor: 'pointer' }}>立即预约</div>
+                </div>
+            )
+        }
+
+        return null
     }
     render() {
         // 基金 FUND = 1
@@ -118,10 +136,10 @@ class Item extends React.Component {
                 break;
         }
         return (
-            <div style={{ backgroundColor: '#fff' }} data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail}>
+            <div style={{ backgroundColor: '#fff' }}>
                 <Div>
                     <div style={{ width: '7.63rem', paddingLeft: '0.37rem', borderRight:'1px solid #E2E2E2'}}>
-                        <Title>{item.project_name}</Title>
+                        <Title data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail}>{item.project_name}</Title>
                         <div style={{ display: 'flex',alignItems:'center', color: '#3D3A35', fontSize: '0.24rem', marginBottom:'0.6rem'}}>
                             <div style={{marginRight:'20px'}}>预估年化回报率 :</div>
                             <Rate>{project.estimate_yearly_return}</Rate>
@@ -135,6 +153,7 @@ class Item extends React.Component {
                             {allTag}
                         </div>
                     </div>
+                    {this.appointment()}
                 </Div>
             </div>
         )

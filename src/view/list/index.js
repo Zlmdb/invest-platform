@@ -55,7 +55,7 @@ class List extends React.Component {
         if (arr){
             var total = initData.total_count
             arr.forEach(function (value,index) {
-                arrNode.push(<Item item={value} key={index}></Item>)
+                arrNode.push(<Item clickEnable item={value} key={index}></Item>)
             })
         }
         
