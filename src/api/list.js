@@ -1,4 +1,6 @@
 import 'whatwg-fetch'
+import fetchJsonp from 'fetch-jsonp';
+import {baseUrl} from './baseUrl'
 // 初始化请求
 //请求开始
 export const REQUEST_GETS = 'LIST_INIT_REQUEST_GETS'
@@ -27,8 +29,9 @@ export function invalidateSubreddit() {
 export function fetchInit(data) {
     return function (dispatch) {
         dispatch(requestGets())
-        return fetch('/project/list?page='+data, {
+        return fetch(baseUrl+'/project/list?page='+data, {
             methods: 'GET',
+            mode: "cors",
             headers: {
                 'Content-Type':  'application/json' 
             }

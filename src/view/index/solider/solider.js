@@ -43,7 +43,7 @@ export default class slider extends React.Component {
         pause={true}
         autoplay={true}
         dots={true}
-        arrows={true}
+        arrows={false}
       />
     )
   }
