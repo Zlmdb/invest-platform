@@ -166,6 +166,7 @@ class Index extends React.Component {
     componentDidMount() {
         let { fetchInit } = this.props
         fetchInit(1)
+        window.scrollTo(0, 0)
     }
     render() {
         const { initData } = this.props
@@ -219,7 +220,7 @@ class Index extends React.Component {
                         </AdvantageDetailItem>
                         <AdvantageDetailItem>
                             <div className="advanceNum">
-                                <img alt="" src={require('../../assets/images/hb.png')}></img>
+                                <img alt="" src={require('../../assets/images/zp.png')}></img>
                             </div>
                             <div className="advance">
                                 <AdvanceTitle>智能平台</AdvanceTitle>

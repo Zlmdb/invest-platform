@@ -28,6 +28,7 @@ class List extends React.Component {
         
     }
     componentDidMount(){
+        window.scrollTo(0, 0)
         window.addEventListener('scroll', this.scrollHandler);
         let { fetchInit} = this.props
         fetchInit(1)
