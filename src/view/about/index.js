@@ -19,8 +19,8 @@ class Income extends React.Component {
     }
     componentDidMount() {
         let { increaseAction, fetchpost, fetchpost2} = this.props
-        // increaseAction()
-        // fetchpost('reactjs')
+        increaseAction()
+        fetchpost('reactjs')
         fetchpost2('reactjs')
     }
     componentWillReceiveProps(nextProps, nextState) {

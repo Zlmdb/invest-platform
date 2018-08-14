@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import 'styles/app.styl';
 
 const Div = styled.div`
-        background-color:#000;
+        background-color:#3D3A35;
         height:70px;
         line-height:70px;
         padding-left:15%;
@@ -13,12 +13,13 @@ const Div = styled.div`
         margin-bottom:30px;
         `;
 const DivItem= styled.div`
-        background-color:${props => props.isClick ? '#B7916D' : '#000'};
+        background-color:${props => props.isClick ? '#B7916D' : '#3D3A35'};
         &:hover{
             background-color:#B7916D
         }
         margin-right:80px;
         padding:0 10px;
+        cursor:pointer;
         `;
 
 
@@ -32,10 +33,9 @@ class List extends React.Component {
     };
 
     render() {
-        const { scrollTop } = this.props
-        console.log(scrollTop)
+        // const { scrollTop } = this.props
         return (
-            <div style={{ position: this.props.scrollTop ? 'fixed' : '', top: this.props.scrollTop ? 0 : '',width:'100%'}}>
+            <div style={{ position: 'fixed', top: '70px',width:'100%'}}>
                 <Div>
                     <DivItem isClick>全部分类</DivItem>
                     <DivItem>固定收益</DivItem>

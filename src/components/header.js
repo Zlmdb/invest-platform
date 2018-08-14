@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 // import { bindActionCreators } from 'redux'
 // import { connect } from 'react-redux'
 import styled from 'styled-components';
+import 'styles/header.styl'
 
 const HeaderContain = styled.div`
         font-size: 14px;
@@ -12,6 +13,11 @@ const HeaderContain = styled.div`
         display:flex;
         align-items:center;
         text-align:center;
+        
+        position:fixed;
+        top:0;
+        width:100%;
+        z-index:10;
         `;
 const Image = styled.img`
         width:0.48rem;
@@ -41,10 +47,18 @@ const HeaderRightRegister = HeaderRightTag.extend`
        border:1px solid #C6AB92;
        border-radius:20px;
        color:#C6AB92;
+       cursor:pointer;
+       &:hover{
+           background-color:rgba(198,171,146,0.2);
+       }
         `;
 const HeaderRightLogin = HeaderRightRegister.extend`
        background-color:#C6AB92;
        color:#fff;
+       cursor:pointer;
+       &:hover{
+           background-color:#B08F70;
+       }
         `;
 class Header extends React.Component {
     constructor(props) {
@@ -79,12 +93,12 @@ class Header extends React.Component {
     render() {
         const logo = require('../assets/images/logo.png')
         return (
-            <HeaderContain>
+            <HeaderContain className={this.props.marginBottom?'headerMarginBottom':''}>
                 <HeaderLeft><Image src={logo}></Image>溪谷全球</HeaderLeft>
                 <HeaderRight>
                     <NavLink exact to='/' activeClassName='indexSelected' className="headerTag">网站首页</NavLink>
                     <NavLink to='/list' activeClassName='indexSelected' className="headerTag">产品列表</NavLink>
-                    <HeaderRightLogin>登陆</HeaderRightLogin>
+                    <HeaderRightLogin>登录</HeaderRightLogin>
                     <HeaderRightRegister>注册</HeaderRightRegister>
                 </HeaderRight>
             </HeaderContain>

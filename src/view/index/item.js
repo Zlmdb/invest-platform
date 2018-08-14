@@ -1,13 +1,7 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom';
-import { PropTypes } from 'prop-types'
 // import { bindActionCreators } from 'redux'
 import styled from 'styled-components';
-import Header from 'compon/header'
-import Footer from 'compon/footer'
-import Solider from './solider/solider';
-import { fetchInit } from 'api/list'
 import 'styles/app.styl';
 
 
@@ -24,7 +18,7 @@ const RecommendedItem = styled.div`
         flex-direction:column;
         justify-content:space-between;
         &:hover{
-            box-shadow:0 0 20px #E4D4C6;
+            box-shadow:0 0 5px #F4E8DE;
         }
         `;
 const RecommendSplitDownTitle = styled.div`
@@ -50,6 +44,7 @@ const RecommendSplitDownKnow = styled.div`
         text-align:center;
         border-radius:0.3rem;
         margin-top:0.33rem;
+        cursor:pointer;
         &:hover{
             background-color:#B08F70;
         }
@@ -85,13 +80,13 @@ class Item extends React.Component {
             project = item.insurance
         }
         return (
-            <RecommendedItem className={this.props.center ? 'itemCenter' : ''} data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail}>
+            <RecommendedItem className={this.props.center ? 'itemCenter' : ''}>
                     <div className="recommendSplitUp"></div>
                     <div className="recommendSplitDown">
                         <RecommendSplitDownTitle>{item.project_name}</RecommendSplitDownTitle>
                         <RecommendSplitDownTurn>{project.estimate_yearly_return}</RecommendSplitDownTurn>
                         <RecommendSplitDownDate>七日年化收益率</RecommendSplitDownDate>
-                        <RecommendSplitDownKnow>了解详情</RecommendSplitDownKnow>
+                    <RecommendSplitDownKnow data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail}>了解详情</RecommendSplitDownKnow>
                     </div>
                 </RecommendedItem>
         )
