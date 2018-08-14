@@ -17,29 +17,54 @@ class List extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            current:1
+            current:1,
+            scrollTop:false
         }
+        this.scrollHandler = this.handleScroll.bind(this);
     }
     componentWillMount(){
         
         
     }
     componentDidMount(){
+        window.addEventListener('scroll', this.scrollHandler);
         let { fetchInit} = this.props
         fetchInit(1)
+    }
+    handleScroll(event) {
+        let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        // let scrollTop = event.srcElement.body.scrollTop;
+        this._handleScroll(scrollTop);
+    }
+    _handleScroll(scrollTop) {
+        console.log(scrollTop)
+        if (parseInt(scrollTop) >= 70) {
+            this.setState({
+                scrollTop:true
+            })
+            console.log('erert')
+        }else{
+            this.setState({
+                scrollTop: false
+            })
+        }
+        //滚动条距离页面的高度
     }
     componentWillReceiveProps(nextProps, nextState){
 
     }
-    shouldComponentUpdate(nextProps, nextState){
-        let { initData } = this.props
-        return nextProps.initData !== initData
-    }
+    // shouldComponentUpdate(nextProps, nextState){
+    //     let { initData } = this.props
+    //     return nextProps.initData !== initData
+    // }
     componentWillUpdate(nextProps, nextState){
 
     }
     componentDidUpdate(prevProps, prevState) {
 
+    }
+    componentWillUnmountf () {
+        window.removeEventListener('scroll', this.handleScroll);
     }
     onChange = (page) => {
         console.log(page);
@@ -62,7 +87,7 @@ class List extends React.Component {
         return (
             <div>
                 <Header></Header>
-                <Search></Search>
+                <Search scrollTop={this.state.scrollTop}></Search>
                 {arrNode}
                 <div style={{display:'flex',justifyContent:'center',marginBottom:'0.93rem',marginTop:'0.68rem'}}>
                     <Pagination pageSize={10} hideOnSinglePage={true} total={total} defaultCurrent={1} current={this.state.current} onChange={this.onChange}/>

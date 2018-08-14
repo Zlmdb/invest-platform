@@ -32,9 +32,10 @@ class List extends React.Component {
     };
 
     render() {
-        // const { sharedNum, expectedIncome, canUse } = this.props
+        const { scrollTop } = this.props
+        console.log(scrollTop)
         return (
-            <div>
+            <div style={{ position: this.props.scrollTop ? 'fixed' : '', top: this.props.scrollTop ? 0 : '',width:'100%'}}>
                 <Div>
                     <DivItem isClick>全部分类</DivItem>
                     <DivItem>固定收益</DivItem>
