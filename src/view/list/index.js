@@ -21,6 +21,7 @@ class List extends React.Component {
             scrollTop:false
         }
         this.scrollHandler = this.handleScroll.bind(this);
+        this.change = this.change.bind(this);
     }
     componentWillMount(){
         
@@ -37,12 +38,10 @@ class List extends React.Component {
         this._handleScroll(scrollTop);
     }
     _handleScroll(scrollTop) {
-        console.log(scrollTop)
         if (parseInt(scrollTop) >= 70) {
             this.setState({
                 scrollTop:true
             })
-            console.log('erert')
         }else{
             this.setState({
                 scrollTop: false
@@ -66,7 +65,7 @@ class List extends React.Component {
     componentWillUnmountf () {
         window.removeEventListener('scroll', this.handleScroll);
     }
-    onChange = (page) => {
+    change(page){
         console.log(page);
         this.setState({
             current: page,
@@ -88,9 +87,11 @@ class List extends React.Component {
             <div>
                 <Header></Header>
                 <Search scrollTop={this.state.scrollTop}></Search>
-                {arrNode}
+                <div style={{marginTop:'180px'}}>
+                    {arrNode}
+                </div>
                 <div style={{display:'flex',justifyContent:'center',marginBottom:'0.93rem',marginTop:'0.68rem'}}>
-                    <Pagination pageSize={10} hideOnSinglePage={true} total={total} defaultCurrent={1} current={this.state.current} onChange={this.onChange}/>
+                    <Pagination pageSize={10} hideOnSinglePage={true} total={total} defaultCurrent={1} current={this.state.current} onChange={this.change}/>
                 </div>
                 <Footer></Footer>
             </div>

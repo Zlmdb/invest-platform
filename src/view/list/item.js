@@ -1,20 +1,21 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import 'styles/app.styl';
+import 'styles/list.styl';
 
 const Div = styled.div`
         max-width:70%;
-        // max-width:12rem;
-        background:url(${require('../../assets/images/list.png')}) no-repeat 100% 100%;
+        background-image:url(${require('../../assets/images/list.png')});
+        background-size:cover;
+        background-repeat:no-repeat;
         height:3.7rem;
         display:flex;
         margin:0 auto;
-        border:0.5px solid #eee;
+        border-bottom:0.5px solid #eee;
         padding:0.5rem;
         margin-bottom:30px;
         &:hover{
-            box-shadow:0 0 20px #E4D4C6;
+            box-shadow:0 0 5px #F4E8DE;
         }
         `;
 const Title = styled.div`
@@ -61,8 +62,8 @@ class Item extends React.Component {
         const { appointment } = this.props
         if (appointment) {
             return (
-                <div style={{ display: 'flex', flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ padding: '8px 24px', background: '#C6AB92', borderRadius: '0.44rem', fontSize: '0.24rem', color: '#fff', cursor: 'pointer' }}>立即预约</div>
+                <div className="appointRight">
+                    <div className="immediateReservation">立即预约</div>
                 </div>
             )
         }

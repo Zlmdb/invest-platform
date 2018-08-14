@@ -18,7 +18,7 @@ const RecommendedItem = styled.div`
         flex-direction:column;
         justify-content:space-between;
         &:hover{
-            box-shadow:0 0 20px #E4D4C6;
+            box-shadow:0 0 5px #F4E8DE;
         }
         `;
 const RecommendSplitDownTitle = styled.div`

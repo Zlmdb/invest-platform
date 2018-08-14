@@ -41,8 +41,10 @@ export default class Slider extends Component {
   componentDidMount() {
     this.goPlay();
   }
-
-  render() {
+  componentWillUnmount(){//ding加的，组件卸载时，清除定时器
+    this.pausePlay()
+  }
+    render() {
     let count = this.props.items.length;
 
     let itemNodes = this.props.items.map((item, idx) => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-
+import 'styles/footer.styl'
 
 
 const FooterLeft = styled.div`
@@ -53,16 +53,16 @@ class Footer extends React.Component {
                     <FooterCenter>
                         <div style={{ flex: 2 }}></div>
                         <div style={{ flex: 1, whiteSpace: 'nowrap', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                            <div style={{ marginBottom: '10px' }}>-- 产品列表</div>
-                            <div>-- 用户服务协议</div>
+                            <div style={{ marginBottom: '10px' }}><span className='footerLineMargin'>--</span> 产品列表</div>
+                            <div><span className='footerLineMargin'>--</span> 用户服务协议</div>
                         </div>
                         <div style={{ flex: 2 }}></div>
                     </FooterCenter>
                     <FooterRight>
                         <div style={{ flex: 2 }}></div>
                         <div style={{ flex: 1, whiteSpace: 'nowrap', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-                            <div style={{ marginBottom: '10px' }}>-- 投资热线</div>
-                            <div>-- 400 900 6185</div>
+                            <div style={{ marginBottom: '10px' }}><span className='footerLineMargin'>--</span> 投资热线</div>
+                            <div><img src={require('../assets/images/phone.png')} style={{marginRight:'5px'}}/> 199 6743 0870</div>
                         </div>
                         <div style={{ flex: 2 }}></div>
                     </FooterRight>

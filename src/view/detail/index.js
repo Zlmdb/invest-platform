@@ -32,7 +32,9 @@ class Detail extends React.Component {
         return (
             <div>
                 <Header marginBottom></Header>
-                {this.itemValue && <Item appointment item={this.itemValue}></Item>}
+                <div style={{marginTop:'110px'}}>
+                    {this.itemValue && <Item appointment item={this.itemValue}></Item>}
+                </div>
                 <div className="html_text_img" style={{width:'70%',margin:'0 auto',marginTop:'30px',overflow:'hidden'}}>
                     <div dangerouslySetInnerHTML={{__html:value}}>
                     </div>

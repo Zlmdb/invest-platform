@@ -13,7 +13,11 @@ const HeaderContain = styled.div`
         display:flex;
         align-items:center;
         text-align:center;
-        box-shadow:0 0 10px #E4D4C6;
+        
+        position:fixed;
+        top:0;
+        width:100%;
+        z-index:10;
         `;
 const Image = styled.img`
         width:0.48rem;
