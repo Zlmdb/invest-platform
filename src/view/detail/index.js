@@ -13,15 +13,22 @@ class Detail extends React.Component {
         super(props)
         this.state = {}
     }
+    componentWillMount(){
+        
+    }
     componentDidMount() {
         let { fetchInit } = this.props
         fetchInit(this.id)
+        window.scrollTo(0,0)
         //
-        
     }
     componentWillReceiveProps(nextProps, nextState) {
         
     }
+    
+    componentDidUpdate(prevProps, prevState) {
+    }
+    
     // shouldComponentUpdate(nextProps, nextState) {
     // }
     render() {
