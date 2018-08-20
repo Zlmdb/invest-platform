@@ -1,18 +1,16 @@
 import 'whatwg-fetch'
-// import fetchJsonp from 'fetch-jsonp';
-import {baseUrl} from './baseUrl'
-// 初始化请求
+import { baseUrl } from './baseUrl'
+// 立即预约请求
 //请求开始
-export const REQUEST_GETS = 'LIST_INIT_REQUEST_GETS'
+export const REQUEST_GETS = 'MYINVEST_INIT_REQUEST_GETS'
 function requestGets() {
     return {
         type: REQUEST_GETS
     }
 }
 //请求完成
-export const RECEIVE_GETS = 'LIST_INIT_RECEIVE_GETS'
+export const RECEIVE_GETS = 'MYINVEST_INIT_RECEIVE_GETS'
 function receiveGets(json) {
-    // console.log('触发了')
     return {
         type: RECEIVE_GETS,
         posts: json,
@@ -20,21 +18,27 @@ function receiveGets(json) {
     }
 }
 //请求过期
-export const INVALIDATE_SUBREDDIT = 'LIST_INIT_INVALIDATE_SUBREDDIT'
+export const INVALIDATE_SUBREDDIT = 'MYINVEST_INIT_INVALIDATE_SUBREDDIT'
 export function invalidateSubreddit() {
     return {
         type: INVALIDATE_SUBREDDIT
     }
 }
 
-export function fetchInit(data) {
+export function fetchMyInvestInit(mobile, page) {
+    let data = {
+        mobile: mobile,
+        page: page
+    };
     return function (dispatch) {
         dispatch(requestGets())
-        return fetch(baseUrl+'/project/list?page='+data, {
-            method: 'GET',
+        return fetch(baseUrl + '/userinfo/investments', {
+            method: 'POST',
             mode: "cors",
+            body: JSON.stringify(data),
             headers: {
-                'Content-Type':  'application/json' 
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
             }
         })
             .then(

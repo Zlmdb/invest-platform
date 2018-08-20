@@ -1,18 +1,16 @@
 import 'whatwg-fetch'
-// import fetchJsonp from 'fetch-jsonp';
-import {baseUrl} from './baseUrl'
-// 初始化请求
+import { baseUrl } from './baseUrl'
+// 发送验证码请求
 //请求开始
-export const REQUEST_GETS = 'LIST_INIT_REQUEST_GETS'
+export const REQUEST_GETS = 'MA_REQUEST_GETS'
 function requestGets() {
     return {
         type: REQUEST_GETS
     }
 }
 //请求完成
-export const RECEIVE_GETS = 'LIST_INIT_RECEIVE_GETS'
+export const RECEIVE_GETS = 'MA_RECEIVE_GETS'
 function receiveGets(json) {
-    // console.log('触发了')
     return {
         type: RECEIVE_GETS,
         posts: json,
@@ -20,21 +18,21 @@ function receiveGets(json) {
     }
 }
 //请求过期
-export const INVALIDATE_SUBREDDIT = 'LIST_INIT_INVALIDATE_SUBREDDIT'
+export const INVALIDATE_SUBREDDIT = 'MA_INVALIDATE_SUBREDDIT'
 export function invalidateSubreddit() {
     return {
         type: INVALIDATE_SUBREDDIT
     }
 }
 
-export function fetchInit(data) {
+export function fetchMa(data) {
     return function (dispatch) {
         dispatch(requestGets())
-        return fetch(baseUrl+'/project/list?page='+data, {
-            method: 'GET',
+        return fetch(baseUrl + '/userinfo/code?mobile=' + data, {
+            methods: 'GET',
             mode: "cors",
             headers: {
-                'Content-Type':  'application/json' 
+                'Content-Type': 'application/json'
             }
         })
             .then(

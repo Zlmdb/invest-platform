@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
-import { RECEIVE_GETS } from 'api/list'
-const defaultState = {}
+import { RECEIVE_GETS } from 'api/follow'
+const defaultState = null
 export default handleActions({
 
     [RECEIVE_GETS]: (state, action) => {
