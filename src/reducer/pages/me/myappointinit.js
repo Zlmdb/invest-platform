@@ -1,5 +1,5 @@
 import { handleActions } from 'redux-actions';
-import { RECEIVE_GETS } from 'api/list'
+import { RECEIVE_GETS } from 'api/myappoint'
 const defaultState = {}
 export default handleActions({
 

@@ -156,9 +156,9 @@ const CenterLine = styled.div`
         margin-top:30px;
         `;
 class Index extends React.Component {
-    static propTypes = {
-        initData: PropTypes.object.isRequired
-    }
+    // static propTypes = {
+    //     initData: PropTypes.object.isRequired
+    // }
     constructor(props) {
         super(props)
         this.state = {}
@@ -170,6 +170,7 @@ class Index extends React.Component {
     }
     render() {
         const { initData } = this.props
+        console.log(initData)
         let arr = initData.data, arrNode = []
         if (arr) {
             let arrSlice = arr.slice(0, 3)

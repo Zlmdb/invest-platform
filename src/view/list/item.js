@@ -1,6 +1,11 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux'
 import styled from 'styled-components';
+import {Button} from 'antd';
+import { fetchFollow } from 'api/follow';
+import { fetchUnFollow } from 'api/unfollow';
+import { baseUrl } from '../../api/baseUrl'
 import 'styles/list.styl';
 
 const Div = styled.div`
@@ -39,16 +44,65 @@ const RateTag = styled.div`
         padding:5px 10px;
         background-color:rgba(198,171,146,0.2);
         `;
-
+class CancelAppoint extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state = {
+            content: '取消预约'
+        }
+        this.cancelButton = this.cancelButton.bind(this)
+    }
+    //我的预约页的取消预约
+    cancelButton(e) {
+        let mobile = window.localStorage.getItem('mobile')
+        let id = e.currentTarget.getAttribute('data-id')
+        console.log(id)
+        this.props.appointCancelButton(mobile,id)
+    }
+    render(){
+    return (
+        <div className="appointRight">
+            <div className="immediateReservation" data-id={this.props.id} onClick={this.cancelButton}>{this.state.content}</div>
+        </div>
+    )
+    }
+       
+}
 class Item extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            detailAppoint:false,//详情页里的默认没预约
+            content: '立即预约',
+            isDetailButton:false,//详情页的立即预约按钮是否可用
+        }
         this.toDetail = this.toDetail.bind(this)
+        this.appointButton = this.appointButton.bind(this)
+        this.appointCancelButton = this.appointCancelButton.bind(this)
     }
-    componentDidMount = () => {
+    componentDidMount(){
 
     }
+    componentWillReceiveProps(nextProps, nextState){
+        if (nextProps.follow && nextProps.follow.status===200){
+            if (this.isFollow === 'yes') {//这里是因为，follow接口触发一次，store里的follow对象信息就会一直存在，nextProps.follow.status===200也一直为true，返回再进来，还是为true,所以要加个判断，下次进来this.isFollow就是undefined了
+                console.log('触发了follow')
+                this.setState({
+                    detailAppoint: true,
+                    content: '已预约',
+                    isDetailButton: true,
+                })
+            }
+        }
+        // if (nextProps.unfollow && nextProps.unfollow.status===200){
+        //     console.log('即将触发了unfollow')
+        //     if (this.props.cancelCallback){
+                // console.log('触发了unfollow')
+                // this.props.cancelCallback()//调用我的预约页面的初始化刷新
+        //     }
+        // }
+    }
+    
     toDetail(e){
         if(this.props.clickEnable){
             this.props.history.push('/detail')
@@ -59,16 +113,62 @@ class Item extends React.Component {
         }
     }
     appointment(){
+        //详情页传过来的（立即预约）
         const { appointment } = this.props
-        if (appointment) {
+        if (appointment) {//详情页的立即预约和已预约
             return (
                 <div className="appointRight">
-                    <div className="immediateReservation">立即预约</div>
+                    <Button disabled={this.state.isDetailButton} className="immediateReservation" onClick={this.appointButton}>{this.state.content}</Button>
                 </div>
             )
         }
-
+        // if (appointmentCancel) {//我的预约页的取消预约
+        //     return (
+                
+        //     )
+        // }
         return null
+    }
+    //点击详情页的立即预约和已预约
+    appointButton(){
+        let login = window.localStorage.getItem('login')
+        let mobile = window.localStorage.getItem('mobile')
+        let id = window.localStorage.getItem('id')
+        if (login === 'yes') {//登录了，就调用预约接口
+            this.props.fetchFollow(mobile,id)
+            this.isFollow='yes'
+        }else{
+            this.props.itemClickButton('yes')//传给父组件detail,去弹出header里的登录框，
+        }
+    }
+    //我的预约页的取消预约
+    appointCancelButton(phone,id) {
+        let data = {
+            mobile: phone,
+            project_id: id
+        };
+        //调用取消预约接口
+        // this.props.fetchUnFollow(phone, id)
+        fetch(baseUrl + '/userinfo/unfollow', {
+            method: 'POST',
+            mode: "cors",
+            body: JSON.stringify(data),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        )
+        .then(json =>
+            // dispatch(receiveGets(json))
+            this.props.cancelCallback()//调用我的预约页面的初始化刷新
+        )
+        .catch(err => {
+            console.error(err);
+        })
     }
     render() {
         // 基金 FUND = 1
@@ -137,7 +237,7 @@ class Item extends React.Component {
                 break;
         }
         return (
-            <div style={{ backgroundColor: '#fff' }}>
+            <div style={{ backgroundColor: '#fff',width:'100%' }}>
                 <Div>
                     <div style={{ width: '7.63rem', paddingLeft: '0.37rem', borderRight:'1px solid #E2E2E2'}}>
                         <Title data-item={JSON.stringify(item)} data-id={item.project_id} onClick={this.toDetail}>{item.project_name}</Title>
@@ -155,10 +255,27 @@ class Item extends React.Component {
                         </div>
                     </div>
                     {this.appointment()}
+                    {/*下面的this.props.appointmentCancel是我的预约页面传过来的(取消预约)*/}
+                    {
+                        this.props.appointmentCancel && <CancelAppoint id={item.project_id} appointCancelButton={this.appointCancelButton}/>
+                    }
                 </Div>
             </div>
         )
     }
 }
-
-export default withRouter(Item)
+function mapStateToProps(state) {
+    const follow=state.follow
+    const unfollow=state.unfollow
+    return {
+        follow:follow,
+        unfollow:unfollow
+    }
+}
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchFollow: (phone, id) => dispatch(fetchFollow(phone,id)),
+        fetchUnFollow: (phone, id) => dispatch(fetchUnFollow(phone,id))
+    }
+}
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Item))

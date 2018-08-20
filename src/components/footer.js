@@ -47,7 +47,7 @@ class Footer extends React.Component {
             <div className="footer">
                 <div className="footerItem">
                     <FooterLeft>
-                        <div className="footerImg"></div>
+                        <div className="footerImg"><img style={{maxWidth:'100%'}} src={require('../assets/images/logo.png')}/></div>
                         <div className="footerLeft">溪谷是新型的互联网金融网站，由杭州地普好森有限公司全权运营，旨在向消费者提供可靠的金融产品服务，产品涵盖保险、基金、房产等。</div>
                     </FooterLeft>
                     <FooterCenter>

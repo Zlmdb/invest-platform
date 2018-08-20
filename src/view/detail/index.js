@@ -11,7 +11,10 @@ import 'styles/detail.styl'
 class Detail extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            itemClickButton:false//是否点击了item组件的立即预约按钮
+        }
+        this.itemClickButton = this.itemClickButton.bind(this)
     }
     componentWillMount(){
         
@@ -31,6 +34,13 @@ class Detail extends React.Component {
     
     // shouldComponentUpdate(nextProps, nextState) {
     // }
+    itemClickButton(arg) {//传给itme组件，改变itemClickButton值，再传递给header组件，去打开登录的弹出框。
+        if(arg==='yes'){
+            this.setState({
+                itemClickButton:true
+            })
+        }
+    }
     render() {
         this.itemValue = JSON.parse(window.localStorage.getItem("item"))
         this.id = JSON.parse(window.localStorage.getItem("id"))
@@ -38,9 +48,9 @@ class Detail extends React.Component {
         const { value}=this.props
         return (
             <div>
-                <Header marginBottom></Header>
+                <Header visible={this.state.itemClickButton?'yes':'no'} shadowBottom></Header>
                 <div style={{marginTop:'110px'}}>
-                    {this.itemValue && <Item appointment item={this.itemValue}></Item>}
+                    {this.itemValue && <Item appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
                 </div>
                 <div className="html_text_img" style={{width:'70%',margin:'0 auto',marginTop:'30px',overflow:'hidden'}}>
                     <div dangerouslySetInnerHTML={{__html:value}}>

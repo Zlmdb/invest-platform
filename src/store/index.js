@@ -8,6 +8,11 @@ import about3 from 'reducer/pages/about/about3'
 import question from 'reducer/pages/question/question'
 import listInit from 'reducer/pages/list/init'
 import detailInit from 'reducer/pages/detail/init'
+import login from 'reducer/pages/me/login'
+import unfollow from 'reducer/pages/me/appoint'
+import follow from 'reducer/pages/detail/follow'
+import myappointinit from 'reducer/pages/me/myappointinit'
+import myinvestinit from 'reducer/pages/me/myinvestinit'
 // import * as reducers from 'reducer'//所有的reducer放在一个文件里面
 
 
@@ -42,7 +47,12 @@ const rootReducer = combineReducers({
     about3,
     question,
     listInit,
-    detailInit
+    detailInit,
+    login,
+    follow,
+    unfollow,
+    myappointinit,
+    myinvestinit
 })
 const store = createStore(rootReducer, applyMiddleware(thunk,promise))
 // const store = createStore(rootReducer, applyMiddleware(thunk,promise,logger))
