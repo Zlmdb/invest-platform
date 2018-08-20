@@ -84,12 +84,14 @@ class Header extends React.Component {
         const mobile = window.localStorage.getItem('mobile')
         //手机号截取
         let sliceEnd = ''
-        if (mobile.length === 11) {
-            let slice = mobile.substr(3, 4)
-            sliceEnd = mobile.replace(slice, '****')
-        } else if (mobile.length === 10) {
-            let slice = mobile.substr(3, 3)
-            sliceEnd = mobile.replace(slice, '***')
+        if (mobile){
+            if (mobile.length === 11) {
+                let slice = mobile.substr(3, 4)
+                sliceEnd = mobile.replace(slice, '****')
+            } else if (mobile.length === 10) {
+                let slice = mobile.substr(3, 3)
+                sliceEnd = mobile.replace(slice, '***')
+            }
         }
         if (login==='yes'){
             this.setState({
@@ -132,18 +134,9 @@ class Header extends React.Component {
             visible: true,
         });
     }
-
+    // 点击提交
     handleOk = (e) => {
-        // console.log(e);
-        // this.setState({
-        //     visible: false,
-        // });
-        // console.log('提交')
-        // console.log(this.state.phone)
-        // console.log(this.state.ma)
-        
         let { fetchLogin } = this.props
-        
         fetchLogin(this.state.phone,this.state.ma)
     }
     getphone(arg){//传给loginForm.js,获取phone
