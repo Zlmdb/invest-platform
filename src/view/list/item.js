@@ -94,6 +94,19 @@ class Item extends React.Component {
                 })
             }
         }
+        console.log('itemcomponentWillReceiveProps')
+        
+        if (nextProps.loginData && nextProps.loginData.status === 200){
+            const thenFollow=window.localStorage.getItem('thenFollow')
+            if (thenFollow&&thenFollow==='yes'){
+                if(this.isLogin==='yes'){
+                    // console.log(this.isLogin)
+                    this.isLogin = 'no'
+                    this.appointButton()//去预约
+                    
+                }
+            }
+        }
         // if (nextProps.unfollow && nextProps.unfollow.status===200){
         //     console.log('即将触发了unfollow')
         //     if (this.props.cancelCallback){
@@ -138,6 +151,8 @@ class Item extends React.Component {
             this.props.fetchFollow(mobile,id)
             this.isFollow='yes'
         }else{
+            console.log('iu')
+            this.isLogin = 'yes'
             this.props.itemClickButton('yes')//传给父组件detail,去弹出header里的登录框，
         }
     }
@@ -267,9 +282,11 @@ class Item extends React.Component {
 function mapStateToProps(state) {
     const follow=state.follow
     const unfollow=state.unfollow
+    const loginData = state.login
     return {
         follow:follow,
-        unfollow:unfollow
+        unfollow:unfollow,
+        loginData: loginData
     }
 }
 function mapDispatchToProps(dispatch) {

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import { fetchMyAppointInit } from 'api/myappoint'
 import Item from '../../list/item'
 import styled from 'styled-components';
@@ -19,6 +20,7 @@ class MyAppointer extends React.Component {
         }
         this.cancelCallback = this.cancelCallback.bind(this)
         this.init = this.init.bind(this)
+        this.toList = this.toList.bind(this)
     }
 
     
@@ -42,12 +44,15 @@ class MyAppointer extends React.Component {
                         <img src={require('../../../assets/images/appointEmpty.png')}/>
                         <div style={{display:'inline-block'}}>
                             <div style={{marginBottom:'20px'}}>你还没有预约任何产品</div>
-                            <div style={{ width: '1.82rem', height: '0.46rem',lineHeight:'0.46rem', backgroundColor:"#C6AB92",color:'#fff',margin:'0 auto'}}>去看看吧</div>
+                            <div onClick={this.toList} style={{ width: '1.82rem', height: '0.46rem',lineHeight:'0.46rem', backgroundColor:"#C6AB92",color:'#fff',margin:'0 auto',cursor:'pointer'}}>去看看吧</div>
                         </div>
                     </div>
             )
         // }
         // return null
+    }
+    toList(){
+        this.props.history.push('/list')
     }
     render() {
         let _=this
@@ -84,4 +89,4 @@ function mapDispatchToProps(dispatch) {
         fetchMyAppointInit: (mobile, page) => dispatch(fetchMyAppointInit(mobile, page))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MyAppointer)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyAppointer))

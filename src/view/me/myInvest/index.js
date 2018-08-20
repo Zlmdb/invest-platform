@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 // import styled from 'styled-components';
 import {fetchMyInvestInit} from 'api/myinvest'
 import Item from './item'
@@ -29,12 +30,15 @@ class MyInvest extends React.Component {
                 <img src={require('../../../assets/images/appointEmpty.png')} />
                 <div style={{ display: 'inline-block' }}>
                     <div style={{ marginBottom: '20px' }}>你还没有投资任何产品</div>
-                    <div style={{ width: '1.82rem', height: '0.46rem', lineHeight: '0.46rem', backgroundColor: "#C6AB92", color: '#fff', margin: '0 auto' }}>去看看吧</div>
+                    <div onClick={this.toList} style={{ width: '1.82rem', height: '0.46rem', lineHeight: '0.46rem', backgroundColor: "#C6AB92", color: '#fff', margin: '0 auto', cursor: 'pointer' }}>去看看吧</div>
                 </div>
             </div>
         )
         // }
         // return null
+    }
+    toList() {
+        this.props.history.push('/list')
     }
     render() {
         let _ = this
@@ -57,7 +61,7 @@ class MyInvest extends React.Component {
                 <div style={{display:!!arrNode.length>0 ? '' : 'none',width:'70%',margin:'0 auto', backgroundColor: '#FAFAFA',padding:'0.54rem' ,marginBottom:'50px'}}>
                     <div>
                         <div style={{ paddingBottom: '20px', borderBottom:'1px solid #E2E2E2',marginBottom:'35px'}}>
-                            <span style={{ marginRight: '15px', fontSize: '0.36rem',fontWeight:"bold" }}>总资产:</span><span style={{ color:'#C6AB92',fontSize:'0.64rem'}}>{allMoney}</span>
+                            <span style={{ marginRight: '15px', fontSize: '0.36rem', fontWeight: "bold" }}>总资产:</span><span style={{ color: '#C6AB92', fontSize: '0.64rem' }}>{allMoney + '$'}</span>
                         </div>
                         {arrNode}
                         
@@ -81,4 +85,4 @@ function mapDispatchToProps(dispatch) {
         fetchMyInvestInit: (mobile, page) => dispatch(fetchMyInvestInit(mobile, page))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(MyInvest)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MyInvest))

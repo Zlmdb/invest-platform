@@ -1,8 +1,12 @@
 .headerMarginBottom{
-    box-shadow:0 3px 5px #E4D4C6;
+    box-shadow:0 1px 2px #E4D4C6;
 }
 .ant-modal{
-    width:7.1rem;
+    width:7.1rem!important;
+}
+.ant-modal-body{
+    padding:0 0.82rem;
+    padding-top:0.71rem;
 }
 .ant-modal-header{
     border:none;
@@ -10,6 +14,7 @@
 .ant-modal-footer{
     text-align:center;
     border:none;
+    padding:0.37rem 0.82rem;
 }
 .loginSubmitNo{
     background-color:#BDBDBD;
@@ -22,6 +27,16 @@
 .inputFocus{
     &:focus{
         border:1px solid #C6AB92;
+        box-shadow : none;
+    }
+    &:blur{
+         border:1px solid #d9d9d9;
+    }
+    &:hover{
+        border:1px solid #C6AB92;
+    }
+    &::after{
+       box-shadow : none;
     }
 }
 .ant-dropdown-link{

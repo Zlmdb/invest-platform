@@ -1,5 +1,5 @@
 import React from 'react'
-import {NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import styled from 'styled-components';
 import { Menu, Dropdown, Icon, message, Modal, Button} from 'antd';
@@ -78,6 +78,7 @@ class Header extends React.Component {
         this.getma = this.getma.bind(this)
         this.threeClick = this.threeClick.bind(this)
         this.loginDisabled=this.loginDisabled.bind(this)
+        this.logoClick = this.logoClick.bind(this)
     }
     componentWillMount(){//在这里判断是否登录
         const login=window.localStorage.getItem('login')
@@ -106,9 +107,11 @@ class Header extends React.Component {
         }
     }
     componentWillReceiveProps(nextProps, nextState) {
-        if (nextProps.visible === 'yes') {//接收detail页面传来的visible
+        console.log(5)
+        if (nextProps.visible&&nextProps.visible.value === 'yes') {//接收detail页面传来的visible
             this.setState({
-                visible: true
+                visible: true,
+                detailMark:true//唯一标示符，表示detail页面传过来的
             })
         }
         if (nextProps.loginData&&nextProps.loginData.status===200){
@@ -122,22 +125,35 @@ class Header extends React.Component {
                 let slice = mobile.substr(3, 3)
                 sliceEnd = mobile.replace(slice, '***')
             }
+            //获取登录成功状态，更新state
             this.setState({
                 visible: false,
-                login:true,
+                login:true,//
                 sliceEnd: sliceEnd
             })
         }
+    }
+    componentWillUpdate(){
+
+    }
+    componentDidUpdate(){
+
+    }
+    logoClick(){
+        this.props.history.push('/')
     }
     showModal = () => {
         this.setState({
             visible: true,
         });
     }
-    // 点击提交
+    // 点击登录的提交
     handleOk = (e) => {
         let { fetchLogin } = this.props
         fetchLogin(this.state.phone,this.state.ma)
+        if (this.state.detailMark){//表示是立即预约的登录
+            window.localStorage.setItem('thenFollow','yes')
+        }
     }
     getphone(arg){//传给loginForm.js,获取phone
         this.setState({
@@ -208,11 +224,11 @@ class Header extends React.Component {
     render() {
         const logo = require('../assets/images/logoletter.png')
         return (
-            <HeaderContain className={this.props.shadowBottom?'headerMarginBottom':''}>
-                <HeaderLeft><Image src={logo}></Image></HeaderLeft>
+            <HeaderContain style={{ backgroundColor: this.props.index === 'yes' ? 'rgba(61,58,53,0.2)' : '#fff' }} className={(this.props.shadowBottom || this.props.index === 'no') ? 'headerMarginBottom' :''}>
+                <HeaderLeft><Image onClick={this.logoClick} src={logo} style={{cursor:'pointer'}}></Image></HeaderLeft>
                 <HeaderRight>
-                    <NavLink exact to='/' activeClassName='indexSelected' className="headerTag">网站首页</NavLink>
-                    <NavLink to='/list'  activeClassName='indexSelected' className="headerTag">产品列表</NavLink>
+                    <NavLink exact to='/' activeClassName='indexSelected' className={this.props.index === 'yes' ? "headerTagIndex": "headerTag"}>网站首页</NavLink>
+                    <NavLink to='/list' activeClassName='indexSelected' className={this.props.index === 'yes' ? "headerTagIndex" : "headerTag"}>产品列表</NavLink>
                     {!this.state.login &&<HeaderRightLogin onClick={this.showModal}>登录</HeaderRightLogin>}
                     {!this.state.login && <HeaderRightRegister onClick={this.showModal}>注册</HeaderRightRegister>}
                     {this.state.login && this.module()}
@@ -249,4 +265,4 @@ function mapDispatchToProps(dispatch) {
         fetchLogin: (phone, ma) => dispatch(fetchLogin(phone,ma))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
