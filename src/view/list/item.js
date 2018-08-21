@@ -79,6 +79,7 @@ class Item extends React.Component {
         this.toDetail = this.toDetail.bind(this)
         this.appointButton = this.appointButton.bind(this)
         this.appointCancelButton = this.appointCancelButton.bind(this)
+        this.callBack = this.callBack.bind(this)
     }
     componentDidMount(){
 
@@ -88,17 +89,19 @@ class Item extends React.Component {
             if (this.isFollow === 'yes') {//这里是因为，follow接口触发一次，store里的follow对象信息就会一直存在，nextProps.follow.status===200也一直为true，返回再进来，还是为true,所以要加个判断，下次进来this.isFollow就是undefined了
                 this.isFollow='no'
                 console.log('触发了follow')
-                this.setState({
-                    detailAppoint: true,
-                    content: '已预约',
-                    isDetailButton: true,
-                })
-                //detail页传来的
-                this.props.isDetailFollow()
+                // this.setState({
+                //     detailAppoint: true,
+                //     content: '已预约',
+                //     isDetailButton: true,
+                // })
+                // //detail页传来的
+                // this.props.isDetailFollow()
             }
         }
+        console.log(nextProps.isAppointAlready)
+        console.log(this.props.isAppointAlready)
         //详情页初始化传过来的值，是否已经预约
-        if (nextProps.isAppointAlready){
+        if (nextProps.isAppointAlready==='yes'){
             this.setState({
                 detailAppoint: true,
                 content: '已预约',
@@ -117,13 +120,6 @@ class Item extends React.Component {
                 }
             }
         }
-        // if (nextProps.unfollow && nextProps.unfollow.status===200){
-        //     console.log('即将触发了unfollow')
-        //     if (this.props.cancelCallback){
-                // console.log('触发了unfollow')
-                // this.props.cancelCallback()//调用我的预约页面的初始化刷新
-        //     }
-        // }
     }
     
     toDetail(e){
@@ -158,13 +154,23 @@ class Item extends React.Component {
         let mobile = window.localStorage.getItem('mobile')
         let id = window.localStorage.getItem('id')
         if (login === 'yes') {//登录了，就调用预约接口
-            this.props.fetchFollow(mobile,id)
+            this.props.fetchFollow(mobile, id, this.callBack )
             this.isFollow='yes'
         }else{
             console.log('iu')
             this.isLogin = 'yes'
             this.props.itemClickButton('yes')//传给父组件detail,去弹出header里的登录框，
         }
+    }
+    callBack(data){
+        this.setState({
+            detailAppoint: true,
+            content: '已预约',
+            isDetailButton: true,
+        })
+        //detail页传来的
+        this.props.isDetailFollow()
+        console.log(data)
     }
     //我的预约页的取消预约
     appointCancelButton(phone,id) {
@@ -301,7 +307,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        fetchFollow: (phone, id) => dispatch(fetchFollow(phone,id)),
+        fetchFollow: (phone, id, callBack) => dispatch(fetchFollow(phone, id, callBack)),
         fetchUnFollow: (phone, id) => dispatch(fetchUnFollow(phone,id))
     }
 }

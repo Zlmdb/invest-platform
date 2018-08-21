@@ -89,13 +89,15 @@ class Detail extends React.Component {
         this.id = JSON.parse(window.localStorage.getItem("id"))
         this.mobile = window.localStorage.getItem("mobile")
         // console.log(this.itemValue)
-        
+        //是否登录
+        let isAppointAlready = (value && value.data && value.data.follow) === 1 ? 'yes' : 'no'
+        console.log(isAppointAlready)
         const showObj={value:'yes'}
         return (
             <div>
                 <Header visible={this.state.itemClickButton ? showObj:'no'}  shadowBottom></Header>
                 <div style={{marginTop:'110px'}}>
-                    {this.itemValue && <Item isDetailFollow={this.isDetailFollow} isAppointAlready={value&&value.data&&value.data.follow===1?true:false} appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
+                    {this.itemValue && <Item isDetailFollow={this.isDetailFollow} isAppointAlready={isAppointAlready} appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
                 </div>
                 <div className="html_text_img" style={{width:'70%',margin:'0 auto',marginTop:'30px',overflow:'hidden'}}>
                     <div dangerouslySetInnerHTML={{ __html: value && value.data && value.data.data ? value.data.data:''}}>
@@ -110,7 +112,7 @@ class Detail extends React.Component {
                     onCancel={this.handleCancel}
                     visible={this.state.visible}
                     footer={[
-                        <div  key="submit" type="primary" className="appointSuccessModule"  onClick={this.handleOk} block>知道了</div>
+                        <div  key="submit" type="primary" className="appointSuccessModule"  onClick={this.handleOk}>知道了</div>
                     ]}
                 >
                     <div> 您的预约信息已成功提交，客户经理将在24小时内与您联系。</div>
@@ -122,29 +124,8 @@ class Detail extends React.Component {
 
 function mapStateToProps(state) {
     const value = state.detailInit
-    const follow = state.follow
-    // console.log(value)
-    // const value2 = state.listInit
-    // console.log(value2)
-    // //
-    // let id=window.localStorage.getItem("id")
-    // let current={};
-    // //遍历value2
-    // if (value2){
-    //     let data = value2.data
-    //     data.forEach((v,i,arr)=>{
-    //         if(v.project_id===id){
-    //             current=v
-    //         }
-    //     })
-    //     return {
-    //         value: value,
-    //         current: current
-    //     }
-    // }
     return {
-        value:value,
-        follow: follow
+        value:value
     }
 }
 function mapDispatchToProps(dispatch) {
