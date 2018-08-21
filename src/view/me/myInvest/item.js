@@ -1,9 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router-dom';
 import styled from 'styled-components';
-import { Card } from 'antd';
-
-
 
 const Div = styled.div`
         width:33.3%;
@@ -20,43 +17,44 @@ const Div = styled.div`
 class Item extends React.Component {
     constructor(props) {
         super(props)
+        this.toDetail = this.toDetail.bind(this)
     }
 
 
     // shouldComponentUpdate(nextProps, nextState) {
     // }
+    toDetail(e){
+        const id = e.currentTarget.getAttribute('data-id')
+        window.localStorage.setItem('id',id)
+        this.props.history.push('/detail')
+
+    }
     render() {
         const { item } = this.props
         let allMoney = parseFloat(item.principal) + parseFloat(item.interest)
+        let pure_interest = Math.abs(item.interest)
         let colorSet ='red'
-        if (item.interest.indexOf('-'===-1)){
+        if (item.interest.indexOf('-')===-1){//正数
+            // console.log(1)
             colorSet ='red'
         }else{
+            // console.log(2)
             colorSet = 'green'
         }
         return (
             <div style={{marginBottom:'40px'}}>
-                <div style={{ marginBottom: '20px', color:'#3D3A35',fontSize:'0.3rem',fontWeight:'bold'}}>财富好望角租赁收益型美元基金</div>
+                <div className="investItemTitle" data-id={item.project_id} onClick={this.toDetail}>{item.project_name}</div>
                 <div style={{ backgroundColor: '#fff', border: '0.5px solid #E2E2E2' }}>
                     <div className="rateTable">
-                        <Div right bottom >年华回报率</Div>
+                        <Div right bottom >年化回报率</Div>
                         <Div right bottom >迄今收益</Div>
                         <Div bottom >资产</Div>
                     </div>
                     <div className="rateTable">
                         <Div right >{item.estimate_yearly_return}</Div>
-                        <Div right style={{ color: colorSet = 'red' ? '#FF4E32' : '#7ED321' }} >{item.interest.indexOf('-' === -1) ? '+' + item.interest : item.interest}</Div>
-                        <Div>{allMoney}</Div>
+                        <Div right style={{ color: colorSet === 'red' ? '#FF4E32' : '#7ED321' }} >{item.interest.indexOf('-') === -1 ? '+' : '-'}{item.unit === 0 ? '￥' : '$'}{pure_interest}</Div>
+                        <Div>{item.unit === 0 ? '￥' : '$'}{allMoney}</Div>
                     </div>
-                    {/*<Card title="Card Title">
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-                        <Card.Grid style={gridStyle}>Content</Card.Grid>
-        </Card>*/}
                 </div>
             </div>
         )

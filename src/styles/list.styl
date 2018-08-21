@@ -12,9 +12,18 @@
     color: #fff;
     cursor: pointer;
     height:auto;
+    border:none;
     &:hover{
            background-color:#B08F70;
            color:#fff;
            border:none;
-       }
+    }
+    &::after{
+        border:none;
+        background-color:#c6ab92;
+    }
+    &:focus{
+        color:#fff;
+        background-color:#C6AB92; 
+    }
 }

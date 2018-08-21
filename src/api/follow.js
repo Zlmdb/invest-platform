@@ -25,37 +25,32 @@ export function invalidateSubreddit() {
     }
 }
 
-export function fetchFollow(mobile, id) {
+export function fetchFollow(mobile, id,callback) {
+    // console.log(callback)
     let data = {
         mobile: mobile,
         project_id: id
     };
-    // let formData = new FormData();
-    // formData.append("mobile", mobile);
-    // formData.append("code", ma);
-
     return function (dispatch) {
         dispatch(requestGets())
         return fetch(baseUrl + '/userinfo/follow', {
             method: 'POST',
             mode: "cors",
             body: JSON.stringify(data),
-            // body: formData,
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json'
             }
-            // headers: {
-            //     'Accept': 'application/x-www-form-urlencoded',
-            //     'Content-Type': 'application/x-www-form-urlencoded'
-            // }
         })
             .then(
                 response => response.json(),
                 error => console.log('An error occurred.', error)
             )
-            .then(json =>
-                dispatch(receiveGets(json))
+            .then(json =>{
+                    dispatch(receiveGets(json))
+                    callback(json)
+                // console.log(callback)
+                }
             )
             .catch(err => {
                 console.error(err);

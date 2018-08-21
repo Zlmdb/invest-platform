@@ -4,6 +4,7 @@ import Index from 'view/index'
 import List from 'view/list'
 import Detail from 'view/detail'
 import Me from 'view/me'
+import Agreement from 'view/userAgreement'
 import About from 'view/about'
 import Question from 'view/question'
 
@@ -15,6 +16,7 @@ export default function () {
                     <Route path='/list' component={List} />
                     <Route path='/detail' component={Detail} />
                     <Route path='/me' component={Me} />
+                    <Route path='/agree' component={Agreement} />
                     <Route path='/about' component={About} />
                     <Route path='/question' component={Question} />
                 </Switch>

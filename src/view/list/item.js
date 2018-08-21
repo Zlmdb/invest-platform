@@ -79,6 +79,7 @@ class Item extends React.Component {
         this.toDetail = this.toDetail.bind(this)
         this.appointButton = this.appointButton.bind(this)
         this.appointCancelButton = this.appointCancelButton.bind(this)
+        this.callBack = this.callBack.bind(this)
     }
     componentDidMount(){
 
@@ -86,30 +87,48 @@ class Item extends React.Component {
     componentWillReceiveProps(nextProps, nextState){
         if (nextProps.follow && nextProps.follow.status===200){
             if (this.isFollow === 'yes') {//这里是因为，follow接口触发一次，store里的follow对象信息就会一直存在，nextProps.follow.status===200也一直为true，返回再进来，还是为true,所以要加个判断，下次进来this.isFollow就是undefined了
+                this.isFollow='no'
                 console.log('触发了follow')
-                this.setState({
-                    detailAppoint: true,
-                    content: '已预约',
-                    isDetailButton: true,
-                })
+                // this.setState({
+                //     detailAppoint: true,
+                //     content: '已预约',
+                //     isDetailButton: true,
+                // })
+                // //detail页传来的
+                // this.props.isDetailFollow()
             }
         }
-        // if (nextProps.unfollow && nextProps.unfollow.status===200){
-        //     console.log('即将触发了unfollow')
-        //     if (this.props.cancelCallback){
-                // console.log('触发了unfollow')
-                // this.props.cancelCallback()//调用我的预约页面的初始化刷新
-        //     }
-        // }
+        console.log(nextProps.isAppointAlready)
+        console.log(this.props.isAppointAlready)
+        //详情页初始化传过来的值，是否已经预约
+        if (nextProps.isAppointAlready==='yes'){
+            this.setState({
+                detailAppoint: true,
+                content: '已预约',
+                isDetailButton: true,
+            })
+        }
+        //在没预约的情况下，点击立即预约，先在header组件登录，成功后，在这里预约
+        if (nextProps.loginData && nextProps.loginData.status === 200){
+            const thenFollow=window.localStorage.getItem('thenFollow')
+            if (thenFollow&&thenFollow==='yes'){
+                if(this.isLogin==='yes'){
+                    // console.log(this.isLogin)
+                    this.isLogin = 'no'
+                    this.appointButton()//去预约
+                    
+                }
+            }
+        }
     }
     
     toDetail(e){
         if(this.props.clickEnable){
-            this.props.history.push('/detail')
-            let item = e.currentTarget.getAttribute('data-item')
-            window.localStorage.setItem("item", item)
             let id = e.currentTarget.getAttribute('data-id')
             window.localStorage.setItem("id", id)
+            this.props.history.push('/detail')
+            // let item = e.currentTarget.getAttribute('data-item')
+            // window.localStorage.setItem("item", item)
         }
     }
     appointment(){
@@ -135,11 +154,23 @@ class Item extends React.Component {
         let mobile = window.localStorage.getItem('mobile')
         let id = window.localStorage.getItem('id')
         if (login === 'yes') {//登录了，就调用预约接口
-            this.props.fetchFollow(mobile,id)
+            this.props.fetchFollow(mobile, id, this.callBack )
             this.isFollow='yes'
         }else{
+            console.log('iu')
+            this.isLogin = 'yes'
             this.props.itemClickButton('yes')//传给父组件detail,去弹出header里的登录框，
         }
+    }
+    callBack(data){
+        this.setState({
+            detailAppoint: true,
+            content: '已预约',
+            isDetailButton: true,
+        })
+        //detail页传来的
+        this.props.isDetailFollow()
+        console.log(data)
     }
     //我的预约页的取消预约
     appointCancelButton(phone,id) {
@@ -267,14 +298,16 @@ class Item extends React.Component {
 function mapStateToProps(state) {
     const follow=state.follow
     const unfollow=state.unfollow
+    const loginData = state.login
     return {
         follow:follow,
-        unfollow:unfollow
+        unfollow:unfollow,
+        loginData: loginData
     }
 }
 function mapDispatchToProps(dispatch) {
     return {
-        fetchFollow: (phone, id) => dispatch(fetchFollow(phone,id)),
+        fetchFollow: (phone, id, callBack) => dispatch(fetchFollow(phone, id, callBack)),
         fetchUnFollow: (phone, id) => dispatch(fetchUnFollow(phone,id))
     }
 }

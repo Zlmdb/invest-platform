@@ -161,16 +161,44 @@ class Index extends React.Component {
     // }
     constructor(props) {
         super(props)
-        this.state = {}
+        this.state = {
+            scrollTop: false
+        }
+        this.scrollHandler = this.handleScroll.bind(this);
     }
     componentDidMount() {
         let { fetchInit } = this.props
         fetchInit(1)
         window.scrollTo(0, 0)
+        //绑定滚动事件
+        window.addEventListener('scroll', this.scrollHandler);
+    }
+    //下面俩是滚动函数
+    handleScroll(event) {
+        let scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+        // let scrollTop = event.srcElement.body.scrollTop;
+        this._handleScroll(scrollTop);
+    }
+    _handleScroll(scrollTop) {
+        let deviceWidth = document.documentElement.clientWidth
+        let bannerHeight = (deviceWidth / 19.2)*8.48
+        if (parseInt(scrollTop) >= bannerHeight) {
+            this.setState({
+                scrollTop: true
+            })
+        } else {
+            this.setState({
+                scrollTop: false
+            })
+        }
+        //滚动条距离页面的高度
+    }
+    componentWillUnmount(){//卸载滚动事件
+        window.removeEventListener('scroll', this.scrollHandler);
     }
     render() {
         const { initData } = this.props
-        console.log(initData)
+        // console.log(initData)
         let arr = initData.data, arrNode = []
         if (arr) {
             let arrSlice = arr.slice(0, 3)
@@ -184,7 +212,7 @@ class Index extends React.Component {
         }
         return (
             <div className="App">
-                <Header></Header>
+                <Header index={this.state.scrollTop?'no':'yes'}></Header>
                 {/*<Swiper>待确定文案</Swiper>*/}
                 <Solider/>
                 <RecommendedProducts>

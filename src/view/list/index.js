@@ -63,7 +63,7 @@ class List extends React.Component {
     componentDidUpdate(prevProps, prevState) {
 
     }
-    componentWillUnmountf () {
+    componentWillUnmount () {
         window.removeEventListener('scroll', this.handleScroll);
     }
     change(page){
