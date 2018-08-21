@@ -44,18 +44,21 @@ class Detail extends React.Component {
     // }
     itemClickButton(arg) {//传给itme组件，改变itemClickButton值，再传递给header组件，去打开登录的弹出框。
         if(arg==='yes'){
-            console.log('3')
+            // console.log('3')
             this.setState({
                 itemClickButton:true
             })
         }
     }
     render() {
-        this.itemValue = JSON.parse(window.localStorage.getItem("item"))
+        const { value } = this.props
+        if (value && value.data && value.data.project_basic){
+            this.itemValue = value.data.project_basic
+        }
         this.id = JSON.parse(window.localStorage.getItem("id"))
         this.mobile = window.localStorage.getItem("mobile")
         // console.log(this.itemValue)
-        const { value}=this.props
+        
         const showObj={value:'yes'}
         return (
             <div>

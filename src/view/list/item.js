@@ -126,11 +126,11 @@ class Item extends React.Component {
     
     toDetail(e){
         if(this.props.clickEnable){
-            this.props.history.push('/detail')
-            let item = e.currentTarget.getAttribute('data-item')
-            window.localStorage.setItem("item", item)
             let id = e.currentTarget.getAttribute('data-id')
             window.localStorage.setItem("id", id)
+            this.props.history.push('/detail')
+            // let item = e.currentTarget.getAttribute('data-item')
+            // window.localStorage.setItem("item", item)
         }
     }
     appointment(){

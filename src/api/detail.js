@@ -38,7 +38,7 @@ export function fetchInit(mobile,id) {
         };
     }
     
-    console.log(data)
+    // console.log(data)
     return function (dispatch) {
         dispatch(requestGets())
         return fetch(baseUrl +'/project/detail', {

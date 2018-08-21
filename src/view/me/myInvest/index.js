@@ -53,7 +53,7 @@ class MyInvest extends React.Component {
 
             }
         }
-        console.log(allMoney)
+        // console.log(allMoney)
         return (
             <div style={{ }}>
                 <div style={{ paddingLeft: '15%', margin: '0.56rem 0' }}><img style={{ height: '0.33rem' }} src={require('../../../assets/images/myinvest.png')} /></div>

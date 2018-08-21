@@ -180,6 +180,7 @@ class Header extends React.Component {
             this.setState({
                 login:false
             })
+            this.props.history.push('/')
         }
     };
     loginDisabled(arg){
