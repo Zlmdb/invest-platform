@@ -193,6 +193,9 @@ class Index extends React.Component {
         }
         //滚动条距离页面的高度
     }
+    componentWillUnmount(){//卸载滚动事件
+        window.removeEventListener('scroll', this.scrollHandler);
+    }
     render() {
         const { initData } = this.props
         // console.log(initData)

@@ -204,7 +204,6 @@ class Header extends React.Component {
                 <Menu.Item>
                     <Link to="/me/appointer">我的预约</Link>
                 </Menu.Item>
-                <Menu.Divider />
                 <Menu.Item>
                     <Link to="/me/invest">我的投资</Link>
                 </Menu.Item>
@@ -217,7 +216,7 @@ class Header extends React.Component {
         return(
             <Dropdown overlay={menu}>
                 <a className="ant-dropdown-link">
-                    <img style={{ width: '0.56rem', height: '0.56rem',marginRight:'20px',marginLeft:'66px' }} src={require('../assets/images/userLogoS.png')}></img>
+                    <img className="avater" src={require('../assets/images/userLogoS.png')}></img>
                     {this.state.sliceEnd} <Icon type="down" />
                 </a>
             </Dropdown>

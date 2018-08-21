@@ -78,25 +78,30 @@ class NormalLoginForm extends React.Component {
         var time = 60;
         // console.log(time);
         //倒计时，并改变内容
-        var timer = setInterval(() => {
+        var _this=this
+        _this.timer = setInterval(() => {
             time--;
             // console.log(time);
-            this.setState({
+            _this.setState({
                 content: "剩余" + time + "秒"
             });
             if (time == 0) {
-                clearInterval(timer)
-                this.setState({
+                clearInterval(_this.timer)
+                _this.setState({
                     content: "获取验证码",
                     maButtonEnable: false//可以点击了
                 });
-                clearInterval(timer)
-                timer = 0;
+                clearInterval(_this.timer)
+                _this.timer = 0;
                 return
             }
         }, 1000)
         let { fetchMa } = this.props
         fetchMa(this.state.phone)
+    }
+    componentWillUnmount(){//卸载
+        clearInterval(this.timer)
+        this.timer = 0;
     }
     render() {
         return (

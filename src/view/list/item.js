@@ -86,15 +86,18 @@ class Item extends React.Component {
     componentWillReceiveProps(nextProps, nextState){
         if (nextProps.follow && nextProps.follow.status===200){
             if (this.isFollow === 'yes') {//这里是因为，follow接口触发一次，store里的follow对象信息就会一直存在，nextProps.follow.status===200也一直为true，返回再进来，还是为true,所以要加个判断，下次进来this.isFollow就是undefined了
+                this.isFollow='no'
                 console.log('触发了follow')
                 this.setState({
                     detailAppoint: true,
                     content: '已预约',
                     isDetailButton: true,
                 })
+                //detail页传来的
+                this.props.isDetailFollow()
             }
         }
-        //详情页传过来的值，是否已经预约
+        //详情页初始化传过来的值，是否已经预约
         if (nextProps.isAppointAlready){
             this.setState({
                 detailAppoint: true,
@@ -102,8 +105,7 @@ class Item extends React.Component {
                 isDetailButton: true,
             })
         }
-        // console.log('itemcomponentWillReceiveProps')
-        
+        //在没预约的情况下，点击立即预约，先在header组件登录，成功后，在这里预约
         if (nextProps.loginData && nextProps.loginData.status === 200){
             const thenFollow=window.localStorage.getItem('thenFollow')
             if (thenFollow&&thenFollow==='yes'){
