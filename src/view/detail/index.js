@@ -12,7 +12,8 @@ class Detail extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            itemClickButton:false//是否点击了item组件的立即预约按钮
+            itemClickButton:false,//是否点击了item组件的立即预约按钮
+            isAppointAlready:false//立即预约按钮是否禁用
         }
         this.itemClickButton = this.itemClickButton.bind(this)
     }
@@ -21,12 +22,19 @@ class Detail extends React.Component {
     }
     componentDidMount() {
         let { fetchInit } = this.props
-        fetchInit(this.id)
+        fetchInit(this.mobile,this.id)
         window.scrollTo(0,0)
         //
     }
     componentWillReceiveProps(nextProps, nextState) {
-        
+        // if (nextProps.value && nextProps.value.status === 200) {
+        //     if (this.isFollow === 'yes') {//这里是因为，follow接口触发一次，store里的follow对象信息就会一直存在，nextProps.follow.status===200也一直为true，返回再进来，还是为true,所以要加个判断，下次进来this.isFollow就是undefined了
+        //         console.log('触发了follow')
+        //         this.setState({
+        //             isDetailButton: true,
+        //         })
+        //     }
+        // }
     }
     
     componentDidUpdate(prevProps, prevState) {
@@ -45,6 +53,7 @@ class Detail extends React.Component {
     render() {
         this.itemValue = JSON.parse(window.localStorage.getItem("item"))
         this.id = JSON.parse(window.localStorage.getItem("id"))
+        this.mobile = JSON.parse(window.localStorage.getItem("mobile"))
         // console.log(this.itemValue)
         const { value}=this.props
         const showObj={value:'yes'}
@@ -52,10 +61,10 @@ class Detail extends React.Component {
             <div>
                 <Header visible={this.state.itemClickButton ? showObj:'no'}  shadowBottom></Header>
                 <div style={{marginTop:'110px'}}>
-                    {this.itemValue && <Item appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
+                    {this.itemValue && <Item isAppointAlready={value &&value.data.follow===1?true:false} appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
                 </div>
                 <div className="html_text_img" style={{width:'70%',margin:'0 auto',marginTop:'30px',overflow:'hidden'}}>
-                    <div dangerouslySetInnerHTML={{__html:value}}>
+                    <div dangerouslySetInnerHTML={{ __html: value && value.data.data ? value.data.data:''}}>
                     </div>
                 </div>
                 <Footer></Footer>
@@ -91,7 +100,7 @@ function mapStateToProps(state) {
 }
 function mapDispatchToProps(dispatch) {
     return {
-        fetchInit: (data) => dispatch(fetchInit(data))
+        fetchInit: (mobile,id) => dispatch(fetchInit(mobile,id))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Detail)

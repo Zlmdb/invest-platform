@@ -44,8 +44,8 @@ class Item extends React.Component {
                     </div>
                     <div className="rateTable">
                         <Div right >{item.estimate_yearly_return}</Div>
-                        <Div right style={{ color: colorSet === 'red' ? '#FF4E32' : '#7ED321' }} >{item.interest.indexOf('-') === -1 ? '+' + item.interest : item.interest}{item.unit === 0 ? '￥' : '$'}</Div>
-                        <Div>{allMoney}{item.unit === 0 ?'￥':'$'}</Div>
+                        <Div right style={{ color: colorSet === 'red' ? '#FF4E32' : '#7ED321' }} >{item.unit === 0 ? '￥' : '$'}{item.interest.indexOf('-') === -1 ? '+' + item.interest : item.interest}</Div>
+                        <Div>{item.unit === 0 ? '￥' : '$'}{allMoney}</Div>
                     </div>
                     {/*<Card title="Card Title">
                         <Card.Grid style={gridStyle}>Content</Card.Grid>

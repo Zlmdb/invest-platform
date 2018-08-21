@@ -94,7 +94,15 @@ class Item extends React.Component {
                 })
             }
         }
-        console.log('itemcomponentWillReceiveProps')
+        //详情页传过来的值，是否已经预约
+        if (nextProps.isAppointAlready){
+            this.setState({
+                detailAppoint: true,
+                content: '已预约',
+                isDetailButton: true,
+            })
+        }
+        // console.log('itemcomponentWillReceiveProps')
         
         if (nextProps.loginData && nextProps.loginData.status === 200){
             const thenFollow=window.localStorage.getItem('thenFollow')

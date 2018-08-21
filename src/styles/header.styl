@@ -3,6 +3,10 @@
 }
 .ant-modal{
     width:7.1rem!important;
+    
+}
+.ant-modal-content{
+    height:8rem!important;
 }
 .ant-modal-body{
     padding:0 0.82rem;
@@ -15,16 +19,30 @@
     text-align:center;
     border:none;
     padding:0.37rem 0.82rem;
+    padding-top:1rem;
 }
 .loginSubmitNo{
     background-color:#BDBDBD;
     border:none;
+    // height:0.82rem;
+    // line-height:0.82rem;
 }
 .loginSubmitYes{
     background-color:#C6AB92;
     border:none;
+    &:focus{
+        background-color:#C6AB92;
+        color:#fff;
+    }
+    &:hover{
+        background-color:#C6AB92;
+    }
+    // height:0.82rem;
+    // line-height:0.82rem;
 }
 .inputFocus{
+    // height:0.9rem;
+    // line-height:0.9rem;
     &:focus{
         border:1px solid #C6AB92;
         box-shadow : none;
@@ -41,4 +59,19 @@
 }
 .ant-dropdown-link{
     color:#3D3A35
+    &:hover{
+        color:#C6AB92;
+    }
+}
+.ant-dropdown-menu-item{
+    &:hover{
+        background-color:rgba(198,171,146,0.2);
+        color:#C6AB92;
+    }
+}
+.ant-dropdown-menu-item{
+    &>a:hover{
+        background-color:rgba(198,171,146,0.2);
+        color:#C6AB92;
+    }
 }

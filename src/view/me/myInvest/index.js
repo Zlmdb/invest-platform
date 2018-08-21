@@ -61,7 +61,7 @@ class MyInvest extends React.Component {
                 <div style={{display:!!arrNode.length>0 ? '' : 'none',width:'70%',margin:'0 auto', backgroundColor: '#FAFAFA',padding:'0.54rem' ,marginBottom:'50px'}}>
                     <div>
                         <div style={{ paddingBottom: '20px', borderBottom:'1px solid #E2E2E2',marginBottom:'35px'}}>
-                            <span style={{ marginRight: '15px', fontSize: '0.36rem', fontWeight: "bold" }}>总资产:</span><span style={{ color: '#C6AB92', fontSize: '0.64rem' }}>{allMoney + '$'}</span>
+                            <span style={{ marginRight: '15px', fontSize: '0.36rem', fontWeight: "bold" }}>总资产:</span><span style={{ color: '#C6AB92', fontSize: '0.64rem' }}>{'$'+allMoney}</span>
                         </div>
                         {arrNode}
                         

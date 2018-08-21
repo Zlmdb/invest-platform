@@ -67,7 +67,7 @@ class Footer extends React.Component {
                         <div style={{ flex: 2 }}></div>
                     </FooterRight>
                 </div>
-                <div className="minwen">© Copyright 2018 | Cesis Theme by Tranmautritam | All Rights Reserved</div>
+                <div className="minwen">© Copyright 2018 | 溪谷全球</div>
             </div>
         )
     }

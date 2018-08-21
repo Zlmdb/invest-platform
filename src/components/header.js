@@ -107,7 +107,7 @@ class Header extends React.Component {
         }
     }
     componentWillReceiveProps(nextProps, nextState) {
-        console.log(5)
+        // console.log(5)
         if (nextProps.visible&&nextProps.visible.value === 'yes') {//接收detail页面传来的visible
             this.setState({
                 visible: true,
@@ -216,16 +216,18 @@ class Header extends React.Component {
         return(
             <Dropdown overlay={menu}>
                 <a className="ant-dropdown-link">
+                    <img style={{ width: '0.56rem', height: '0.56rem',marginRight:'20px',marginLeft:'66px' }} src={require('../assets/images/userLogoS.png')}></img>
                     {this.state.sliceEnd} <Icon type="down" />
                 </a>
             </Dropdown>
         )
     }
     render() {
-        const logo = require('../assets/images/logoletter.png')
+        const logoDefault = require('../assets/images/logoletterDefault.png')
+        const logohWite = require('../assets/images/logoletter.png')
         return (
             <HeaderContain style={{ backgroundColor: this.props.index === 'yes' ? 'rgba(61,58,53,0.2)' : '#fff' }} className={(this.props.shadowBottom || this.props.index === 'no') ? 'headerMarginBottom' :''}>
-                <HeaderLeft><Image onClick={this.logoClick} src={logo} style={{cursor:'pointer'}}></Image></HeaderLeft>
+                <HeaderLeft><Image onClick={this.logoClick} src={this.props.index === 'yes' ? logohWite : logoDefault} style={{cursor:'pointer'}}></Image></HeaderLeft>
                 <HeaderRight>
                     <NavLink exact to='/' activeClassName='indexSelected' className={this.props.index === 'yes' ? "headerTagIndex": "headerTag"}>网站首页</NavLink>
                     <NavLink to='/list' activeClassName='indexSelected' className={this.props.index === 'yes' ? "headerTagIndex" : "headerTag"}>产品列表</NavLink>

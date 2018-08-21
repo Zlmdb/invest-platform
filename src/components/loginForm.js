@@ -102,7 +102,7 @@ class NormalLoginForm extends React.Component {
         return (
             <div>
                 <div style={{textAlign:'center',marginBottom:'0.5rem'}}>
-                    <img  style={{width:'3.32rem'}} src={require('../assets/images/logoletter.png')}/>
+                    <img  style={{width:'3.32rem'}} src={require('../assets/images/logoletterDefault.png')}/>
                 </div>
                 <div style={{ color:'#C6AB92',fontSize:'0.3rem',textAlign:'center',marginBottom:'20px'}}>
                     <span style={{ paddingBottom: '5px', borderBottom:'3px solid #C6AB92',fontWeight:'bold'}}>短信登录</span>

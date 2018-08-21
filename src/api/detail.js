@@ -25,18 +25,25 @@ export function invalidateSubreddit() {
     }
 }
 
-export function fetchInit(data) {
+export function fetchInit(mobile,id) {
+    
+    let data = {
+        id: id,
+        mobile: mobile
+    };
+    console.log(data)
     return function (dispatch) {
         dispatch(requestGets())
-        return fetch(baseUrl +'/project/detail?id=' + data, {
-            methods: 'GET',
+        return fetch(baseUrl +'/project/detail', {
+            method: 'POST',
             mode: "cors",
+            body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
             }
         })
             .then(
-                response => response.text(),
+                response => response.json(),
                 error => console.log('An error occurred.', error)
             )
             .then(json =>

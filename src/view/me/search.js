@@ -59,7 +59,9 @@ class Search extends React.Component {
 
         return (
             <SearchCon>
-                <SearchIcon></SearchIcon>
+                <SearchIcon>
+                    <img style={{width:'100%',height:'100%'}} src={require('../../assets/images/userLogo.png')}></img>
+                </SearchIcon>
                 <SearchPhone>{sliceEnd}</SearchPhone>
             </SearchCon>
         )
