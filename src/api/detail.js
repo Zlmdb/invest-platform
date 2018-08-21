@@ -26,11 +26,18 @@ export function invalidateSubreddit() {
 }
 
 export function fetchInit(mobile,id) {
+    let data
+    if (mobile){
+        data = {
+            id: id,
+            mobile: mobile
+        };
+    }else{
+        data = {
+            id: id
+        };
+    }
     
-    let data = {
-        id: id,
-        mobile: mobile
-    };
     console.log(data)
     return function (dispatch) {
         dispatch(requestGets())

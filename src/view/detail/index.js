@@ -53,7 +53,7 @@ class Detail extends React.Component {
     render() {
         this.itemValue = JSON.parse(window.localStorage.getItem("item"))
         this.id = JSON.parse(window.localStorage.getItem("id"))
-        this.mobile = JSON.parse(window.localStorage.getItem("mobile"))
+        this.mobile = window.localStorage.getItem("mobile")
         // console.log(this.itemValue)
         const { value}=this.props
         const showObj={value:'yes'}
@@ -61,10 +61,10 @@ class Detail extends React.Component {
             <div>
                 <Header visible={this.state.itemClickButton ? showObj:'no'}  shadowBottom></Header>
                 <div style={{marginTop:'110px'}}>
-                    {this.itemValue && <Item isAppointAlready={value &&value.data.follow===1?true:false} appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
+                    {this.itemValue && <Item isAppointAlready={value&&value.data&&value.data.follow===1?true:false} appointment itemClickButton={this.itemClickButton} item={this.itemValue}></Item>}
                 </div>
                 <div className="html_text_img" style={{width:'70%',margin:'0 auto',marginTop:'30px',overflow:'hidden'}}>
-                    <div dangerouslySetInnerHTML={{ __html: value && value.data.data ? value.data.data:''}}>
+                    <div dangerouslySetInnerHTML={{ __html: value && value.data && value.data.data ? value.data.data:''}}>
                     </div>
                 </div>
                 <Footer></Footer>
