@@ -28,12 +28,18 @@ const Image = styled.img`
 const HeaderLeft = styled.div`
         font-size: 0.24rem;
         color: #2A2927;
-        flex:1
+        width:50%;
+        text-align:left;
+        padding-left:15%;
+        // flex:1
         `;
 const HeaderRight = styled.div`
         font-size: 14px;
         color: #3D3A35;
-        flex:1;
+        width:50%;
+        justify-content:flex-end;
+        padding-right:15%;
+        // flex:1;
         display:flex;
         align-items:center;
         height:70px;
@@ -226,7 +232,7 @@ class Header extends React.Component {
         const logoDefault = require('../assets/images/logoletterDefault.png')
         const logohWite = require('../assets/images/logoletter.png')
         return (
-            <HeaderContain style={{ backgroundColor: this.props.index === 'yes' ? 'rgba(61,58,53,0.2)' : '#fff' }} className={(this.props.shadowBottom || this.props.index === 'no') ? 'headerMarginBottom' :''}>
+            <HeaderContain style={{ backgroundColor: this.props.index === 'yes' ? 'rgba(61,58,53,0.5029)' : '#fff' }} className={(this.props.shadowBottom || this.props.index === 'no') ? 'headerMarginBottom' :''}>
                 <HeaderLeft><Image onClick={this.logoClick} src={this.props.index === 'yes' ? logohWite : logoDefault} style={{cursor:'pointer'}}></Image></HeaderLeft>
                 <HeaderRight>
                     <NavLink exact to='/' activeClassName='indexSelected' className={this.props.index === 'yes' ? "headerTagIndex": "headerTag"}>网站首页</NavLink>
