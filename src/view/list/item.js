@@ -94,14 +94,15 @@ class Item extends React.Component {
                 //     content: '已预约',
                 //     isDetailButton: true,
                 // })
-                // //detail页传来的
+                // //detail页传来的，预约成功弹出框
                 // this.props.isDetailFollow()
             }
         }
         console.log(nextProps.isAppointAlready)
-        console.log(this.props.isAppointAlready)
+        // console.log(this.props.isAppointAlready)
         //详情页初始化传过来的值，是否已经预约
         if (nextProps.isAppointAlready==='yes'){
+            console.log('item变化')
             this.setState({
                 detailAppoint: true,
                 content: '已预约',
@@ -162,15 +163,15 @@ class Item extends React.Component {
             this.props.itemClickButton('yes')//传给父组件detail,去弹出header里的登录框，
         }
     }
+    //follow接口成功的回调
     callBack(data){
         this.setState({
             detailAppoint: true,
             content: '已预约',
             isDetailButton: true,
         })
-        //detail页传来的
+        // //detail页传来的，预约成功弹出框
         this.props.isDetailFollow()
-        console.log(data)
     }
     //我的预约页的取消预约
     appointCancelButton(phone,id) {

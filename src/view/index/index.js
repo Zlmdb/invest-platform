@@ -217,7 +217,7 @@ class Index extends React.Component {
                 <Solider/>
                 <RecommendedProducts>
                     <RecommendedProductsTitle><img alt="" style={{width:'2rem'}} src={require('../../assets/images/recommendProduct.png')}/></RecommendedProductsTitle>
-                    <RecommendedProductsLetter>The platform selects fine projects with reasonable returns and controllable risks, and offers products with diverse return levels, flexible investment terms, and safe trading structures.</RecommendedProductsLetter>
+                    <RecommendedProductsLetter>- Projects -</RecommendedProductsLetter>
                     <CenterLine></CenterLine>
                     <RecommendedCon>
                         {arrNode}
